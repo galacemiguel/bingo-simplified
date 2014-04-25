@@ -723,7 +723,7 @@
 				if (confirm("Bingo! You finished with a time of " + time + " in " + turns + " turns of play. Do you want to play again?")) {
 					window.location = "card.html";
 				} else {
-					window.location = "index.html";
+					window.location = "http://galacemiguel.github.io/bingo-simplified";
 				}
 			} else if (time !== 0) {
 				hideBingoNumbers();
@@ -797,7 +797,7 @@
 					}
 				} else {
 					alert("You have reached the maximum number of turns. Returning to main menu...");
-					window.location = "index.html";
+					window.location = "http://galacemiguel.github.io/bingo-simplified";
 				}
 			}
 		});
@@ -805,7 +805,7 @@
 		var timer = function() {
 			if (minutes === 15) {
 				alert("You have maxed out your time. Returning to main menu...");
-				window.location = "index.html";
+				window.location = "http://galacemiguel.github.io/bingo-simplified";
 			} else if (play === true && gameEnd === false) {
 				window.setTimeout(function() {
 					if (play === true) {
@@ -922,7 +922,7 @@
 			if (gameEnd === false) {
 				dialogPause();
 				if (confirm("Are you sure you want to quit the game?")) {
-					window.location = "index.html";
+					window.location = "http://galacemiguel.github.io/bingo-simplified";
 				}
 				dialogUnpause();
 			}
