@@ -781,10 +781,12 @@
 					if (calledNumberId !== 75) {
 						calledNumberId += 1;
 					} else {
-						$(this).val("#");
-						hideBingoNumbers();
-						alert("All Bingo numbers have been called. Numbers will now repeat.");
-						showBingoNumbers();
+						if (turns === 76) {
+							$(this).val("#");
+							hideBingoNumbers();
+							alert("All Bingo numbers have been called. Numbers will now repeat.");
+							showBingoNumbers();
+						}
 						callNumbers();
 						calledNumberId = 0;
 						$(this).val(calledNumbers[calledNumberId])
