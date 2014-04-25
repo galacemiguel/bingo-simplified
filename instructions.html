@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<head>
+	<link rel="shortcut icon" href="Resources\favicon.ico">
+	<title>BINGO Simplified&trade;</title>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<style>
+    	@font-face {
+	  	font-family: 'MyriadPro-Light';
+	  	src: url('MyriadPro-Light.eot?') format('eot'), 
+	     url('MyriadPro-Light.otf')  format('opentype'),
+	     url('MyriadPro-Light.woff') format('woff'), 
+	     url('MyriadPro-Light.ttf')  format('truetype'),
+	     url('MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+    	}
+
+		body {
+			background: radial-gradient(circle, #7f7f7f, #666666);
+		}
+
+		#container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 800px;
+			height: 499px;
+			margin: auto;
+		}
+
+		#logo {
+			width: 394px;
+			height: 119px;
+			padding: 5px;
+			margin: 48px 3px 8px;
+			-webkit-transform: scale(.68,.68);
+		}
+
+		#box {
+			width: 97px;
+			height: 97px;
+			border: 3px solid white;
+		}
+
+		#h-line {
+			position: relative;
+			top: 47px;
+			width: 100%;
+			height: 3px;
+			background: white;
+		}
+
+		#v-line {
+			position: relative;
+			top: -3px;
+			left: 47px;
+			width: 3px;
+			height: 100%;
+			background: white;
+		}
+
+		#title {
+			position: relative;
+			top: -123px;
+			left: 130px;
+			width: 269px;
+			height: 121px;
+			display: inline-block;
+			font-family: MyriadPro-Light;
+			font-weight: 100;
+			font-size: 100px;
+			color: white;
+			letter-spacing: -2px;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		#subtitle {
+			position: relative;
+			top: -84px;
+			margin-left: 6px;
+			font-size: 29px;
+			letter-spacing: 11.5px;
+		}
+
+		#separator {
+			position: relative;
+			top: -189px;
+			width: 225px;
+			height: 2px;
+			margin: 0 auto;
+      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+		}
+
+		button {
+			position: relative;
+			z-index: 1;
+			width: 216px;
+			height: 36px;
+			display: block;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			margin: 0 71px 10px;
+			background: transparent;
+			font-family: MyriadPro-Light;
+			font-size: 28px;
+			color: white;
+			letter-spacing: 1px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			outline: 1px solid #7eb4ea;
+		}
+
+		button:active {
+			outline: 1px solid #3399ff;
+		}
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+
+		#line {
+			position: absolute;
+			top: 28px;
+			left: 0;
+			width: 2px;
+			height: 208px;
+			background: white;
+		}
+
+		.instructions {
+			position: relative;
+			top: -169px;
+			left: 353px;
+			width: 350px;
+			padding: 0 0 0 21px;
+			font-family: MyriadPro-Light;
+			font-size: 14px;
+			color: white;
+			line-height: 14px;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		h1 {
+			padding: 4px 0 10px 0;
+			font-weight: 100;
+			margin-bottom: -15px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="logo">
+			<div id="box">
+				<div id="h-line"></div>
+				<div id="v-line"></div>
+			</div>
+			<div id="title">BINGO<br /><span id="subtitle">Simplified&trade;</span></div>
+			<div id="separator"></div>
+		</div>
+		<button id="rules">Rules</button>
+		<button id="how-to-play">How to Play</button>
+		<br />
+		<button id="back">Back</button>
+		<div class="instructions" id="rules">
+			<div id="line"></div>
+			<h1>Rules</h1>
+			<p> Bingo is played with a card containing 24 unique numbers arranged in a 5x5 square grid (the middle square is a <i>free space</i>). Bingo numbers (1-75) will be called at random until a player completes a Bingo pattern. </p>
+			<p>In this simplified version, the objective is to clear a line of five consecutive numbers (a row, column or diagonal) on a card. A number may be cleared if the number called is present on the Bingo card.</p>
+			<p>Unlike in regular Bingo, numbers on the Bingo card will not be restricted to a particular column.</p>
+			<p>The game will be timed. Players must attempt to complete a Bingo pattern in the fastest time possible!</p>
+		</div>
+		<div class="instructions" id="how-to-play">
+			<div id="line"></div>
+			<h1>How to Play</h1>
+			<p>You will be allowed to create your own Bingo card. Simply type in the numbers of your choice into your card at the beginning of the game.</p>
+			<p>You can also choose to generate a random Bingo card by clicking on the Randomize button.</p>
+			<p>To start the game, click on the Number box to call a number into play. If that number matches any of those on your card, you must click on that number on your card to clear it. Other-wise, that number will not be cleared if you decide to call a new number.</p>
+			<p>Numbers will repeat once all Bingo numbers have been called into play.</p>
+		</div>
+	</div>
+	<script>
+		$('div#how-to-play').hide();
+
+		$('#rules').click(function() {
+			$('div#rules').show();
+			$('div#how-to-play').hide();
+		});
+
+		$('#how-to-play').click(function() {
+			$('div#rules').hide();
+			$('div#how-to-play').show();
+		});
+
+		$('#back').click(function() {
+			window.location = 'index.html';
+		});
+	</script>
+</body>
+</html>

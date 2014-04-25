@@ -1,0 +1,39 @@
+=== BINGO Simplified™ ===
+
+Version: 2.1
+
+Description: Simplified Bingo Game
+
+Contributors: Miguel Galace, John Reyes
+
+=== Changelog ===
+
+= 2.1 =
+* Mismatched numbers now show
+* Code optimization
+* Updated instructions
+* Lowered max timeout to 15 minutes
+* Lowered maximum number of turns to 300
+
+= 2.0 =
+* New name and logo
+* All-new game design
+* Called numbers no longer repeat
+* Game code optimized
+* Number 75 can now be generated and called into play
+* New instructions and card creation screen layout
+* Numbers now hidden on game pause
+* Game now pauses when application is deactivated
+* Added confirmation on close when game is in progress
+* Game restart now requests confirmation
+* Cursor now changes to 'Hand' on button hover
+* Changed game end event design
+* Changed Bingo card number input design
+* Added timeout game event
+* Limited maximum number of turns
+* Fixed button focuses
+* Added splash screen
+* Message box edits
+* Optimized timer
+
+© 2013-2014 Miguel Galace, John Reyes. All rights reserved.

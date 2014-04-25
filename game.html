@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<head>
+	<link rel="shortcut icon" href="Resources\favicon.ico">
+	<title>BINGO Simplified&trade;</title>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<style>
+    	@font-face {
+	  	font-family: 'MyriadPro-Light';
+	  	src: url('MyriadPro-Light.eot?') format('eot'), 
+	     url('MyriadPro-Light.otf')  format('opentype'),
+	     url('MyriadPro-Light.woff') format('woff'), 
+	     url('MyriadPro-Light.ttf')  format('truetype'),
+	     url('MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+    	}
+
+		body {
+			background: radial-gradient(circle, #7f7f7f, #666666);
+		}
+
+		#container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 800px;
+			height: 499px;
+			margin: auto;
+		}
+
+		#logo {
+			position: relative;
+			top: 116px;
+			left: 144px;
+			width: 394px;
+			height: 119px;
+			padding: 5px;
+			-webkit-transform: scale(.68,.68);
+		}
+
+		#box {
+			width: 97px;
+			height: 97px;
+			border: 3px solid white;
+		}
+
+		#h-line {
+			position: relative;
+			top: 47px;
+			width: 100%;
+			height: 3px;
+			background: white;
+		}
+
+		#v-line {
+			position: relative;
+			top: -3px;
+			left: 47px;
+			width: 3px;
+			height: 100%;
+			background: white;
+		}
+
+		.btnBingo {
+			position: absolute;
+			top: -100px;
+			left: 3px;
+			padding: 0;
+			border: 0;
+			outline: 1.5px solid #acacac;
+			background: transparent;
+			cursor: pointer;
+		}
+
+		.btnBingo:hover:enabled {
+			outline: 1.5px solid #7eb4ea;
+		}
+
+		.btnBingo:active:enabled {
+			outline: 1.5px solid #3399ff;
+		}
+
+		.btnBingo:disabled {
+			background: rgba(255,255,255,.33);
+			color: rgba(255,255,255,.13);
+			cursor: default;
+		}
+
+		#title {
+			position: relative;
+			top: -123px;
+			left: 130px;
+			width: 269px;
+			height: 121px;
+			display: inline-block;
+			font-family: MyriadPro-Light;
+			font-weight: 100;
+			font-size: 100px;
+			color: white;
+			letter-spacing: -2px;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		#subtitle {
+			position: relative;
+			top: -84px;
+			margin-left: 6px;
+			font-size: 29px;
+			letter-spacing: 11.5px;
+		}
+
+		#separator {
+			position: relative;
+			top: -189px;
+			width: 225px;
+			height: 2px;
+			margin: 0 auto;
+      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+		}
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+
+		#card {
+			position: relative;
+			top: 39px;
+			left: 216px;
+			display: block;
+			width: 262px;
+			height: 262px;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			background: transparent;
+			font-family: MyriadPro-Light;
+			color: white;
+			box-shadow: 0 0 100px rgba(0,0,0,.4);
+			cursor: default;
+		}
+
+		#card:hover:enabled {
+			outline: 1px solid #7eb4ea;
+		}
+
+		#card:active:enabled {
+			outline: 1px solid #3399ff;
+		}
+
+		#card:disabled {
+			background: rgba(255,255,255,.33);
+			color: rgba(255,255,255,.6);
+			cursor: default;
+		}
+
+		table {
+			width: 262px;
+			height: 262px;
+			margin: -8px;
+  			border-collapse: collapse;
+		}
+
+		.cell {
+			position: relative;
+			top: 0;
+			left: 11px;
+			width: 50px;
+			height: 50px;
+			margin: -12px;
+		}
+
+		td {
+			border: 2px solid #efefef;
+		}
+
+		.btnCell {
+			position: relative;
+			top: 10px;
+			width: 42px;
+			height: 42px;
+			border: 1px solid #555555;
+			outline: none;
+			margin: -6px;
+			background: white;
+			font-family: Segoe UI;
+			font-size: 18px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.btnCell:hover:enabled {
+			border-top: none;
+			border-left: none;
+			box-shadow: 0 0 0 white;
+		}
+
+		.btnCell:active:enabled {
+			width: 40px;
+			height: 40px;
+			outline: 1px solid black;
+			border: 1px solid #555555;
+			margin: -5px;
+		}
+
+		.btnCell:disabled {
+			cursor: default;
+		}
+
+		.btnCellActive {
+			width: 40px;
+			height: 40px;
+			outline: 1px solid black;
+			border: 1px solid #555555;
+			margin: -5px;
+		}
+
+		.btnCellActive:disabled {
+			color: black;
+		}
+
+		.marked {
+			background: #6d6d66;
+			box-shadow: inset 0px 2px 0px white, inset -2px 0px 0px white, inset 0px -2px 0px white, inset 2px 0px 0px white;
+		}
+
+		#freeSpace {
+			position: absolute;
+			top: 114px;
+			left: 113px;
+			border: none;
+			font-size: 16px;
+			letter-spacing: 0;
+		}
+
+		span {
+			position: relative;
+			top: -5px;
+			font-size: 12px;
+		}
+
+		#hud {
+			position: absolute;
+			top: 0;
+			margin: 44px;
+		}
+		
+		h1 {
+			margin: 7px 0 -2px 3px;
+			font-family: MyriadPro-Light;
+			font-size: 28px;
+			color: white;
+			font-weight: 300;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		#turns {
+			position: relative;
+			left: 3px;
+		}
+
+		input.hud[type="button"] {
+			display: block;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			width: 108px;
+			height: 108px;
+			margin-bottom: 29px;
+			background: transparent;
+			font-family: Segoe UI;
+			font-size: 35px;
+			color: white;
+			cursor: pointer;
+		}
+
+		input.hud[type="button"]:hover:enabled {
+			outline: 1px solid #7eb4ea;
+		}
+
+		input.hud[type="button"]:active:enabled {
+			outline: 1px solid #3399ff;
+		}
+
+		input.hud[type="button"]:disabled {
+			background: rgba(255,255,255,.33);
+			color: rgba(255,255,255,.13);
+			cursor: default;
+		}
+
+		input.active[type="button"] {
+			outline: 1.5px solid #3399ff;
+		}
+
+		#time {
+			position: absolute;
+			top: 57px;
+			left: 496px;
+		}
+
+		#timeBox {
+			position: absolute;
+			top: 94px;
+			left: 496px;
+			width: 216px;
+			height: 72px;
+			font-size: 32px;
+			text-align: center;
+		}
+
+		.menu {
+			position: absolute;
+			top: 182px;
+			left: 496px;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			width: 103px;
+			height: 103px;
+			background: transparent;
+			cursor: pointer;
+		}
+
+		.active {
+			outline: 1.5px solid #3399ff;
+		}
+
+		#btnRestart {
+			left: 609px;
+		}
+
+		#btnQuit {
+			top: 295px;
+			left: 609px;
+		}
+
+		button:hover:enabled {
+			outline: 1px solid #7eb4ea;
+		}
+
+		button:active:enabled {
+			outline: 1px solid #3399ff;
+		}
+
+		button:disabled {
+			background: rgba(255,255,255,.33);
+		}
+
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+
+		h2 {
+			position: relative;
+			top: 39px;
+			font-family: MyriadPro-Light;
+			font-size: 14px;
+			color: white;
+			font-weight: 300;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		#pause {
+			left: -26px;
+		}
+
+		#play {
+			left: -31px;
+		}
+
+		#restart {
+			left: -22px;
+		}
+
+		#quit {
+			left: -30px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="logo">
+			<button class="btnBingo">
+				<div id="box">
+					<div id="h-line"></div>
+					<div id="v-line"></div>
+				</div>
+			</button>
+			<div id="title">BINGO<br /><span id="subtitle">Simplified&trade;</span></div>
+			<div id="separator"></div>
+		</div>
+		<button id="card">
+			<table>
+				<tr>
+					<td><div class="cell" id="r1c1Repeat"><input type="button" class="btnCell" id="r1c1"></div></td>
+					<td><div class="cell" id="r1c2Repeat"><input type="button" class="btnCell" id="r1c2"></div></td>
+					<td><div class="cell" id="r1c3Repeat"><input type="button" class="btnCell" id="r1c3"></div></td>
+					<td><div class="cell" id="r1c4Repeat"><input type="button" class="btnCell" id="r1c4"></div></td>
+					<td><div class="cell" id="r1c5Repeat"><input type="button" class="btnCell" id="r1c5"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r2c1Repeat"><input type="button" class="btnCell" id="r2c1"></div></td>
+					<td><div class="cell" id="r2c2Repeat"><input type="button" class="btnCell" id="r2c2"></div></td>
+					<td><div class="cell" id="r2c3Repeat"><input type="button" class="btnCell" id="r2c3"></div></td>
+					<td><div class="cell" id="r2c4Repeat"><input type="button" class="btnCell" id="r2c4"></div></td>
+					<td><div class="cell" id="r2c5Repeat"><input type="button" class="btnCell" id="r2c5"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r3c1Repeat"><input type="button" class="btnCell" id="r3c1"></div></td>
+					<td><div class="cell" id="r3c2Repeat"><input type="button" class="btnCell" id="r3c2"></div></td>
+					<td><div id="freeSpace">FREE<br /><span>SPACE</span></div></td>
+					<td><div class="cell" id="r3c4Repeat"><input type="button" class="btnCell" id="r3c4"></div></td>
+					<td><div class="cell" id="r3c5Repeat"><input type="button" class="btnCell" id="r3c5"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r4c1Repeat"><input type="button" class="btnCell" id="r4c1"></div></td>
+					<td><div class="cell" id="r4c2Repeat"><input type="button" class="btnCell" id="r4c2"></div></td>
+					<td><div class="cell" id="r4c3Repeat"><input type="button" class="btnCell" id="r4c3"></div></td>
+					<td><div class="cell" id="r4c4Repeat"><input type="button" class="btnCell" id="r4c4"></div></td>
+					<td><div class="cell" id="r4c5Repeat"><input type="button" class="btnCell" id="r4c5"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r5c1Repeat"><input type="button" class="btnCell" id="r5c1"></div></td>
+					<td><div class="cell" id="r5c2Repeat"><input type="button" class="btnCell" id="r5c2"></div></td>
+					<td><div class="cell" id="r5c3Repeat"><input type="button" class="btnCell" id="r5c3"></div></td>
+					<td><div class="cell" id="r5c4Repeat"><input type="button" class="btnCell" id="r5c4"></div></td>
+					<td><div class="cell" id="r5c5Repeat"><input type="button" class="btnCell" id="r5c5"></div></td>
+				</tr>
+			</table>
+		</button>
+		<div id="hud">
+			<h1>Number</h1>
+			<input type="button" class="hud active" id="numberBox" value="#">
+			<h1 id="turns">Turns</h1>
+			<input type="button" class="hud" id="turnsBox" value=0>
+			<h1 id="time">Time</h1>
+			<input type="button" class="hud" id="timeBox" value="00:00">
+			<button class ="menu" id="btnPause"><img src="Resources\btnPauseIcon.png"><h2 id="pause">Pause</h2></button>
+			<button class ="menu active" id="btnPlay"><img src="Resources\btnPlayIcon.png"><h2 id="play">Play</h2></button>
+			<button class ="menu" id="btnRestart"><img src="Resources\btnRestartIcon.png"><h2 id="restart">Restart</h2></button>
+			<button class ="menu" id="btnQuit"><img src="Resources\btnQuitIcon.png"><h2 id="quit">Quit</h2></button>
+		</div>
+	</div>
+	<script>
+		var play = false;
+
+		var calledNumbers;
+		var randomNumber;
+		var callNumbers = function() {
+			calledNumbers = [];
+			randomNumber = function() {
+				return Math.ceil(Math.random() * 75);
+			}
+			tempVal = randomNumber();
+
+			while (calledNumbers.length < 75) {
+				for (var i = 0; i < calledNumbers.length; i++) {
+					while (tempVal === calledNumbers[i]) {
+						tempVal = randomNumber();
+						i = 0;
+					}
+				}
+				calledNumbers.push(tempVal);
+			}
+		}
+		callNumbers();
+		var calledNumberId = 0;
+
+		var turns = 0;
+
+		var r1c1 = sessionStorage.getItem('r1c1'), r1c2 = sessionStorage.getItem('r1c2'), r1c3 = sessionStorage.getItem('r1c3'), r1c4 = sessionStorage.getItem('r1c4'), r1c5 = sessionStorage.getItem('r1c5'),
+			r2c1 = sessionStorage.getItem('r2c1'), r2c2 = sessionStorage.getItem('r2c2'), r2c3 = sessionStorage.getItem('r2c3'), r2c4 = sessionStorage.getItem('r2c4'), r2c5 = sessionStorage.getItem('r2c5'),
+			r3c1 = sessionStorage.getItem('r3c1'), r3c2 = sessionStorage.getItem('r3c2'), r3c4 = sessionStorage.getItem('r3c4'), r3c5 = sessionStorage.getItem('r3c5'),
+			r4c1 = sessionStorage.getItem('r4c1'), r4c2 = sessionStorage.getItem('r4c2'), r4c3 = sessionStorage.getItem('r4c3'), r4c4 = sessionStorage.getItem('r4c4'), r4c5 = sessionStorage.getItem('r4c5'),
+			r5c1 = sessionStorage.getItem('r5c1'), r5c2 = sessionStorage.getItem('r5c2'), r5c3 = sessionStorage.getItem('r5c3'), r5c4 = sessionStorage.getItem('r5c4'), r5c5 = sessionStorage.getItem('r5c5');
+
+		var time = 0;
+		var seconds = 0;
+		var minutes = 0;
+		var startClicks = 0;
+
+		var gameEnd = false;
+
+		var hideBingoNumbers = function() {
+			if ($('#r1c1').hasClass('marked') === false) {
+				$('#r1c1').val("*");
+			}
+			if ($('#r1c2').hasClass('marked') === false) {
+				$('#r1c2').val("*");
+			}
+			if ($('#r1c3').hasClass('marked') === false) {
+				$('#r1c3').val("*");
+			}
+			if ($('#r1c4').hasClass('marked') === false) {
+				$('#r1c4').val("*");
+			}
+			if ($('#r1c5').hasClass('marked') === false) {
+				$('#r1c5').val("*");
+			}
+			if ($('#r2c1').hasClass('marked') === false) {
+				$('#r2c1').val("*");
+			}
+			if ($('#r2c2').hasClass('marked') === false) {
+				$('#r2c2').val("*");
+			}
+			if ($('#r2c3').hasClass('marked') === false) {
+				$('#r2c3').val("*");
+			}
+			if ($('#r2c4').hasClass('marked') === false) {
+				$('#r2c4').val("*");
+			}
+			if ($('#r2c5').hasClass('marked') === false) {
+				$('#r2c5').val("*");
+			}
+			if ($('#r3c1').hasClass('marked') === false) {
+				$('#r3c1').val("*");
+			}
+			if ($('#r3c2').hasClass('marked') === false) {
+				$('#r3c2').val("*");
+			}
+			if ($('#r3c4').hasClass('marked') === false) {
+				$('#r3c4').val("*");
+			}
+			if ($('#r3c5').hasClass('marked') === false) {
+				$('#r3c5').val("*");
+			}
+			if ($('#r4c1').hasClass('marked') === false) {
+				$('#r4c1').val("*");
+			}
+			if ($('#r4c2').hasClass('marked') === false) {
+				$('#r4c2').val("*");
+			}
+			if ($('#r4c3').hasClass('marked') === false) {
+				$('#r4c3').val("*");
+			}
+			if ($('#r4c4').hasClass('marked') === false) {
+				$('#r4c4').val("*");
+			}
+			if ($('#r4c5').hasClass('marked') === false) {
+				$('#r4c5').val("*");
+			}
+			if ($('#r5c1').hasClass('marked') === false) {
+				$('#r5c1').val("*");
+			}
+			if ($('#r5c2').hasClass('marked') === false) {
+				$('#r5c2').val("*");
+			}
+			if ($('#r5c3').hasClass('marked') === false) {
+				$('#r5c3').val("*");
+			}
+			if ($('#r5c4').hasClass('marked') === false) {
+				$('#r5c4').val("*");
+			}
+			if ($('#r5c5').hasClass('marked') === false) {
+				$('#r5c5').val("*");
+			}
+		}
+		var showBingoNumbers = function() {
+			if (time === 0 || play === true) {
+				if ($('#r1c1').hasClass('marked') === false) {
+					$('#r1c1').val(r1c1);
+					$('#r1c1').prop("disabled",false);
+				}
+				if ($('#r1c2').hasClass('marked') === false) {
+					$('#r1c2').val(r1c2);
+					$('#r1c2').prop("disabled",false);
+				}
+				if ($('#r1c3').hasClass('marked') === false) {
+					$('#r1c3').val(r1c3);
+					$('#r1c3').prop("disabled",false);
+				}
+				if ($('#r1c4').hasClass('marked') === false) {
+					$('#r1c4').val(r1c4);
+					$('#r1c4').prop("disabled",false);
+				}
+				if ($('#r1c5').hasClass('marked') === false) {
+					$('#r1c5').val(r1c5);
+					$('#r1c5').prop("disabled",false);
+				}
+				if ($('#r2c1').hasClass('marked') === false) {
+					$('#r2c1').val(r2c1);
+					$('#r2c1').prop("disabled",false);
+				}
+				if ($('#r2c2').hasClass('marked') === false) {
+					$('#r2c2').val(r2c2);
+					$('#r2c2').prop("disabled",false);
+				}
+				if ($('#r2c3').hasClass('marked') === false) {
+					$('#r2c3').val(r2c3);
+					$('#r2c3').prop("disabled",false);
+				}
+				if ($('#r2c4').hasClass('marked') === false) {
+					$('#r2c4').val(r2c4);
+					$('#r2c4').prop("disabled",false);
+				}
+				if ($('#r2c5').hasClass('marked') === false) {
+					$('#r2c5').val(r2c5);
+					$('#r2c5').prop("disabled",false);
+				}
+				if ($('#r3c1').hasClass('marked') === false) {
+					$('#r3c1').val(r3c1);
+					$('#r3c1').prop("disabled",false);
+				}
+				if ($('#r3c2').hasClass('marked') === false) {
+					$('#r3c2').val(r3c2);
+					$('#r3c2').prop("disabled",false);
+				}
+				if ($('#r3c4').hasClass('marked') === false) {
+					$('#r3c4').val(r3c4);
+					$('#r3c4').prop("disabled",false);
+				}
+				if ($('#r3c5').hasClass('marked') === false) {
+					$('#r3c5').val(r3c5);
+					$('#r3c5').prop("disabled",false);
+				}
+				if ($('#r4c1').hasClass('marked') === false) {
+					$('#r4c1').val(r4c1);
+					$('#r4c1').prop("disabled",false);
+				}
+				if ($('#r4c2').hasClass('marked') === false) {
+					$('#r4c2').val(r4c2);
+					$('#r4c2').prop("disabled",false);
+				}
+				if ($('#r4c3').hasClass('marked') === false) {
+					$('#r4c3').val(r4c3);
+					$('#r4c3').prop("disabled",false);
+				}
+				if ($('#r4c4').hasClass('marked') === false) {
+					$('#r4c4').val(r4c4);
+					$('#r4c4').prop("disabled",false);
+				}
+				if ($('#r4c5').hasClass('marked') === false) {
+					$('#r4c5').val(r4c5);
+					$('#r4c5').prop("disabled",false);
+				}
+				if ($('#r5c1').hasClass('marked') === false) {
+					$('#r5c1').val(r5c1);
+					$('#r5c1').prop("disabled",false);
+				}
+				if ($('#r5c2').hasClass('marked') === false) {
+					$('#r5c2').val(r5c2);
+					$('#r5c2').prop("disabled",false);
+				}
+				if ($('#r5c3').hasClass('marked') === false) {
+					$('#r5c3').val(r5c3);
+					$('#r5c3').prop("disabled",false);
+				}
+				if ($('#r5c4').hasClass('marked') === false) {
+					$('#r5c4').val(r5c4);
+					$('#r5c4').prop("disabled",false);
+				}
+				if ($('#r5c5').hasClass('marked') === false) {
+					$('#r5c5').val(r5c5);
+					$('#r5c5').prop("disabled",false);
+				}
+			}
+		}
+		var dialogPause = function() {
+			play = false;
+			$('.btnBingo').prop("disabled",true);
+			$('#numberBox').removeClass('active');
+			$('#numberBox').prop("disabled",true);
+			$('#turnsBox').prop("disabled",true);
+			$('#card').prop("disabled",true);
+			$('.btnCell').prop("disabled",true);
+			hideBingoNumbers();
+			$('#timeBox').prop("disabled",true);
+			$('#btnPause').prop("disabled",true);
+			$('#btnPlay').prop("disabled",true);
+			$('#btnPlay').removeClass('active');
+			$('#btnRestart').prop("disabled",true);
+			$('#btnQuit').prop("disabled",true);
+			$('img').fadeTo(0,.75);
+			$('h2').fadeTo(0,.55);
+		}
+		var dialogUnpause = function() {
+			if (time !== 0 && !($('#btnPause').is(':hidden'))) {
+				play = true;
+			}
+			if (!($('#btnPause').is(':hidden'))) {
+				$('.btnBingo').prop("disabled",false);
+				if (time === 0) {
+					$('#numberBox').addClass('active');
+				}
+				$('#numberBox').prop("disabled",false);
+				$('#turnsBox').prop("disabled",false);
+				$('#card').prop("disabled",false);
+				$('.btnCell').prop("disabled",false);
+				showBingoNumbers();
+				$('#timeBox').prop("disabled",false);
+			}
+			$('#btnPause').prop("disabled",false);
+			$('#btnPlay').prop("disabled",false);
+			$('#btnPlay').addClass('active');
+			$('#btnRestart').prop("disabled",false);
+			$('#btnQuit').prop("disabled",false);
+			$('img').fadeTo(0,1);
+			$('h2').fadeTo(0,1);
+		}
+
+		$('.btnBingo').click(function() {
+			if (gameEnd === true) {
+				seconds = seconds * 1;
+				minutes = minutes * 1;
+				if (minutes === 0 && seconds !== 0) {
+					time = seconds + " seconds";
+				} else if (minutes === 1 && seconds === 0) {
+					time = 1 + " minute";
+				} else if (minutes === 1 && seconds === 1) {
+					time = "1 minute and 1 second";
+				} else if (minutes === 1 && seconds > 1) {
+					time = "1 minute and " + seconds + " seconds";
+				} else if (minutes > 1 && seconds === 0) {
+					time = minutes + " minutes";
+				} else if (minutes > 1 && seconds === 1) {
+					time = minutes + " minutes and 1 second";
+				} else if (minutes > 1 && seconds > 1) {
+					time = minutes + " minutes and " + seconds + " seconds";
+				}
+				if (confirm("Bingo! You finished with a time of " + time + " in " + turns + " turns of play. Do you want to play again?")) {
+					window.location = "card.html";
+				} else {
+					window.location = "index.html";
+				}
+			} else if (time !== 0) {
+				hideBingoNumbers();
+				alert("You have not completed a Bingo pattern yet.");
+				showBingoNumbers();
+			}
+		});
+
+		$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
+		$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
+		$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
+		$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
+		$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
+
+		var mark = function() {
+			if ($(this).val() === $('#numberBox').val()) {
+				$(this).val("");
+				$(this).addClass('marked');
+				$(this).prop("disabled",true);
+
+				if (($('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked')) || ($('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked')) || ($('#r3c1').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r3c5').hasClass('marked')) || ($('#r4c1').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r4c5').hasClass('marked')) || ($('#r5c1').hasClass('marked') && $('#r5c2').hasClass('marked') && $('#r5c3').hasClass('marked') && $('#r5c4').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c1').hasClass('marked') && $('#r2c1').hasClass('marked') && $('#r3c1').hasClass('marked') && $('#r4c1').hasClass('marked') && $('#r5c1').hasClass('marked')) || ($('#r1c2').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c2').hasClass('marked')) || ($('#r1c3').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r5c3').hasClass('marked')) || ($('#r1c4').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c4').hasClass('marked')) || ($('#r1c5').hasClass('marked') && $('#r2c5').hasClass('marked') && $('#r3c5').hasClass('marked') && $('#r4c5').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c5').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c1').hasClass('marked'))) {
+				gameEnd = true;
+				alert("You completed a Bingo pattern! Click on the Bingo logo to finish.");
+				$('.btnBingo').addClass('active');
+				}
+			} else if (play === true && gameEnd === false) {
+				var thisValue = $(this).val();
+				hideBingoNumbers();
+				$(this).val(thisValue);
+				$(this).addClass('btnCellActive');
+				$(this).prop("disabled",true);
+				alert("The numbers do not match.");
+				$(this).removeClass('btnCellActive');
+				$(this).prop("disabled",false);
+				showBingoNumbers();
+			}
+		};
+		$('#r1c1').click(mark), $('#r1c2').click(mark), $('#r1c3').click(mark), $('#r1c4').click(mark), $('#r1c5').click(mark),
+		$('#r2c1').click(mark), $('#r2c2').click(mark), $('#r2c3').click(mark), $('#r2c4').click(mark), $('#r2c5').click(mark),
+		$('#r3c1').click(mark), $('#r3c2').click(mark), $('#r3c4').click(mark), $('#r3c5').click(mark),
+		$('#r4c1').click(mark), $('#r4c2').click(mark), $('#r4c3').click(mark), $('#r4c4').click(mark), $('#r4c5').click(mark),
+		$('#r5c1').click(mark), $('#r5c2').click(mark), $('#r5c3').click(mark), $('#r5c4').click(mark), $('#r5c5').click(mark);
+
+		$('#numberBox').click(function() {
+			if (gameEnd === false) {
+				if ($('#turnsBox').val() < 300) {
+					play = true;
+
+					$(this).removeClass('active');
+
+					turns += 1;
+					$('#turnsBox').val(turns);
+
+					$(this).val(calledNumbers[calledNumberId])
+					if (calledNumberId !== 75) {
+						calledNumberId += 1;
+					} else {
+						$(this).val("#");
+						hideBingoNumbers();
+						alert("All Bingo numbers have been called. Numbers will now repeat.");
+						showBingoNumbers();
+						callNumbers();
+						calledNumberId = 0;
+						$(this).val(calledNumbers[calledNumberId])
+						calledNumberId += 1;
+					}
+
+					startClicks++;
+					if (startClicks === 1) {
+						timer();
+					}
+				} else {
+					alert("You have reached the maximum number of turns. Returning to main menu...");
+					window.location = "index.html";
+				}
+			}
+		});
+
+		var timer = function() {
+			if (minutes === 15) {
+				alert("You have maxed out your time. Returning to main menu...");
+				window.location = "index.html";
+			} else if (play === true && gameEnd === false) {
+				window.setTimeout(function() {
+					if (play === true) {
+						time++;
+					}
+					seconds = Math.floor(time / 100 % 60);
+					minutes = Math.floor(time / 100 / 60);
+					if (seconds < 10) {
+						seconds = "0" + seconds;
+					}
+					if (minutes < 10) {
+						minutes = "0" + minutes;
+					}
+					$('#timeBox').val(minutes + ":" + seconds);
+					timer();
+				}, 10)
+			}
+		}
+
+		var pause = function() {
+			if (gameEnd === false) {
+				play = false;
+				$('#btnPause').hide();
+				$('#btnPlay').show();
+
+				$('.btnBingo').prop("disabled",true);
+				$('#numberBox').removeClass('active');
+				$('#numberBox').prop("disabled",true);
+				$('#turnsBox').prop("disabled",true);
+				$('#card').prop("disabled",true);
+				$('.btnCell').prop("disabled",true);
+				hideBingoNumbers();
+				$('#timeBox').prop("disabled",true);
+				startClicks = 0;
+			}
+		};
+		$('#btnPause').click(pause);
+		$(window).blur(pause);
+
+		$('#btnPlay').hide();
+		$('#btnPlay').click(function() {
+			if (time !== 0) {
+				play = true;
+				timer();
+				startClicks = 1;
+			}
+			$(this).hide();
+			$('#btnPause').show();
+
+			$('.btnBingo').prop("disabled",false);
+			$('#numberBox').prop("disabled",false);
+			if (time === 0) {
+				$('#numberBox').addClass('active');
+			}
+			$('#turnsBox').prop("disabled",false);
+			$('#card').prop("disabled",false);
+			showBingoNumbers();
+			$('#timeBox').prop("disabled",false);
+		});
+
+		$('#btnRestart').click(function() {
+			if (gameEnd === false) {
+				if (time === 0) {
+					$('#numberBox').prop("disabled",false);
+					$('#turnsBox').prop("disabled",false);
+					$('.btnBingo').prop("disabled",false);
+					$('#card').prop("disabled",false);
+					$('.btnCell').prop("disabled",false);
+					$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
+					$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
+					$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
+					$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
+					$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
+					$('#timeBox').prop("disabled",false);
+					$('#btnPlay').hide();
+										$('#btnPause').show();
+				} else {
+					dialogPause();
+					if (confirm("Do you want to restart the game?")) {
+						play = false;
+						callNumbers();
+						calledNumberId = 0;
+						turns = 0;
+						time = 0;
+						seconds = 0;
+						minutes = 0;
+						startClicks = 0;
+						gameEnd = false;
+
+						$('#numberBox').prop("disabled",false);
+						$('#numberBox').val("#");
+						$('#turnsBox').prop("disabled",false);
+						$('#turnsBox').val("0");
+						$('.btnBingo').prop("disabled",false);
+						$('#card').prop("disabled",false);
+						$('.btnCell').removeClass('marked');
+						$('.btnCell').prop("disabled",false);
+						$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
+						$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
+						$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
+						$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
+						$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
+						$('#timeBox').prop("disabled",false);
+						$('#timeBox').val("00:00");
+						$('#btnPlay').hide();
+						$('#btnPause').show();
+					}
+					dialogUnpause();
+				}
+			}
+		});
+
+		$('#btnQuit').click(function() {
+			if (gameEnd === false) {
+				dialogPause();
+				if (confirm("Are you sure you want to quit the game?")) {
+					window.location = "index.html";
+				}
+				dialogUnpause();
+			}
+		});
+	</script>
+</body>
+</html>

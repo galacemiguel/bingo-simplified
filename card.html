@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<head>
+	<link rel="shortcut icon" href="Resources\favicon.ico">
+	<title>BINGO Simplified&trade;</title>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<style>
+    	@font-face {
+	  	font-family: 'MyriadPro-Light';
+	  	src: url('MyriadPro-Light.eot?') format('eot'), 
+	     url('MyriadPro-Light.otf')  format('opentype'),
+	     url('MyriadPro-Light.woff') format('woff'), 
+	     url('MyriadPro-Light.ttf')  format('truetype'),
+	     url('MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+    	}
+
+		body {
+			background: radial-gradient(circle, #7f7f7f, #666666);
+			text-align: center;
+		}
+
+		#container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 800px;
+			height: 499px;
+			margin: auto;
+		}
+
+		h1 {
+			font-family: MyriadPro-Light;
+			font-size: 35px;
+			color: white;
+			font-weight: 300;
+			-webkit-transform: scale(1.1,1);
+		}
+
+		#separator {
+			position: relative;
+			width: 150px;
+			height: 1px;
+			margin: -16px auto 13px;
+      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+		}
+
+		button {
+			position: relative;
+			z-index: 1;
+			display: inline-block;
+			width: 216px;
+			height: 36px;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			margin: 0 8px 10px 8px;
+			background: transparent;
+			font-family: MyriadPro-Light;
+			font-size: 28px;
+			color: white;
+			letter-spacing: 1px;
+			cursor: pointer;
+		}
+
+		button:hover:enabled {
+			outline: 1px solid #7eb4ea;
+		}
+
+		button:active:enabled {
+			outline: 1px solid #3399ff;
+		}
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+
+		#randomize {
+			margin-bottom: -2px;
+		}
+
+		#card {
+			z-index: 2;
+			width: 262px;
+			height: 262px;
+			display: block;
+			margin: 0 auto;
+			box-shadow: 0 0 100px rgba(0,0,0,.4);
+			cursor: default;
+		}
+
+		table {
+			width: 262px;
+			height: 262px;
+			margin: -8px;
+  			border-collapse: collapse;
+  			box-shadow: inset 0 0 0 3px #707070;
+		}
+
+		.cell {
+			position: relative;
+			top: 0;
+			left: 11px;
+			width: 50px;
+			height: 50px;
+			margin: -12px;
+		}
+
+		.repeat {
+			box-shadow: inset 0 0 15px 3px #a04848;
+		}
+
+		td {
+			border: 2px solid #efefef;
+		}
+
+		input {
+			position: relative;
+			top: 10px;
+			width: 36px;
+			height: 34px;
+			margin: -7px;
+			font-family: Segoe UI;
+			font-size: 25px;
+			text-align: center;
+		}
+
+		#freeSpace {
+			position: absolute;
+			top: 113px;
+			left: 112px;
+			border: none;
+			font-size: 16px;
+			letter-spacing: 0;
+		}
+
+		span {
+			position: relative;
+			top: -5px;
+			font-size: 12px;
+		}
+
+		#clear {
+			display: block;
+			margin: -2px auto 19px;
+		}
+
+		:disabled {
+			outline: 1px solid #d9d9d9;
+			background: rgba(255,255,255,.33);
+			color: rgba(255,255,255,.85);
+			cursor: default;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<h1>Create Your Bingo Card</h1>
+		<div id="separator"></div>
+		<button id="randomize">Randomize</button>
+		<button id="card">
+			<table>
+				<tr>
+					<td><div class="cell" id="r1c1Repeat"><input type="text" id="r1c1" maxlength="2"></div></td>
+					<td><div class="cell" id="r1c2Repeat"><input type="text" id="r1c2" maxlength="2"></div></td>
+					<td><div class="cell" id="r1c3Repeat"><input type="text" id="r1c3" maxlength="2"></div></td>
+					<td><div class="cell" id="r1c4Repeat"><input type="text" id="r1c4" maxlength="2"></div></td>
+					<td><div class="cell" id="r1c5Repeat"><input type="text" id="r1c5" maxlength="2"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r2c1Repeat"><input type="text" id="r2c1" maxlength="2"></div></td>
+					<td><div class="cell" id="r2c2Repeat"><input type="text" id="r2c2" maxlength="2"></div></td>
+					<td><div class="cell" id="r2c3Repeat"><input type="text" id="r2c3" maxlength="2"></div></td>
+					<td><div class="cell" id="r2c4Repeat"><input type="text" id="r2c4" maxlength="2"></div></td>
+					<td><div class="cell" id="r2c5Repeat"><input type="text" id="r2c5" maxlength="2"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r3c1Repeat"><input type="text" id="r3c1" maxlength="2"></div></td>
+					<td><div class="cell" id="r3c2Repeat"><input type="text" id="r3c2" maxlength="2"></div></td>
+					<td id="freeSpace">FREE<br /><span>SPACE</span></td>
+					<td><div class="cell" id="r3c4Repeat"><input type="text" id="r3c4" maxlength="2"></div></td>
+					<td><div class="cell" id="r3c5Repeat"><input type="text" id="r3c5" maxlength="2"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r4c1Repeat"><input type="text" id="r4c1" maxlength="2"></div></td>
+					<td><div class="cell" id="r4c2Repeat"><input type="text" id="r4c2" maxlength="2"></div></td>
+					<td><div class="cell" id="r4c3Repeat"><input type="text" id="r4c3" maxlength="2"></div></td>
+					<td><div class="cell" id="r4c4Repeat"><input type="text" id="r4c4" maxlength="2"></div></td>
+					<td><div class="cell" id="r4c5Repeat"><input type="text" id="r4c5" maxlength="2"></div></td>
+				</tr>
+				<tr>
+					<td><div class="cell" id="r5c1Repeat"><input type="text" id="r5c1" maxlength="2"></div></td>
+					<td><div class="cell" id="r5c2Repeat"><input type="text" id="r5c2" maxlength="2"></div></td>
+					<td><div class="cell" id="r5c3Repeat"><input type="text" id="r5c3" maxlength="2"></div></td>
+					<td><div class="cell" id="r5c4Repeat"><input type="text" id="r5c4" maxlength="2"></div></td>
+					<td><div class="cell" id="r5c5Repeat"><input type="text" id="r5c5" maxlength="2"></div></td>
+				</tr>
+			</table>
+		</button>
+		<button id="clear">Clear</button>
+		<button id="play">Play</button>
+		<button id="back">Back</button>
+	</div>
+	<script>
+		var r1c1, r1c2, r1c3, r1c4, r1c5,
+			r2c1, r2c2, r2c3, r2c4, r2c5,
+			r3c1, r3c2, r3c4, r3c5,
+			r4c1, r4c2, r4c3, r4c4, r4c5,
+			r5c1, r5c2, r5c3, r5c4, r5c5;
+		var bingoNumbers;
+
+		var r1c1Repeat = 0, r1c2Repeat = 0, r1c3Repeat = 0, r1c4Repeat = 0, r1c5Repeat = 0,
+			r2c1Repeat = 0, r2c2Repeat = 0, r2c3Repeat = 0, r2c4Repeat = 0, r2c5Repeat = 0,
+			r3c1Repeat = 0, r3c2Repeat = 0, r3c4Repeat = 0, r3c5Repeat = 0,
+			r4c1Repeat = 0, r4c2Repeat = 0, r4c3Repeat = 0, r4c4Repeat = 0, r4c5Repeat = 0,
+			r5c1Repeat = 0, r5c2Repeat = 0, r5c3Repeat = 0, r5c4Repeat = 0, r5c5Repeat = 0;
+
+		window.setInterval(function() {
+			r1c1 = $('#r1c1').val(), r1c2 = $('#r1c2').val(), r1c3 = $('#r1c3').val(), r1c4 = $('#r1c4').val(), r1c5 = $('#r1c5').val();
+			r2c1 = $('#r2c1').val(), r2c2 = $('#r2c2').val(), r2c3 = $('#r2c3').val(), r2c4 = $('#r2c4').val(), r2c5 = $('#r2c5').val();
+			r3c1 = $('#r3c1').val(), r3c2 = $('#r3c2').val(), r3c4 = $('#r3c4').val(), r3c5 = $('#r3c5').val();
+			r4c1 = $('#r4c1').val(), r4c2 = $('#r4c2').val(), r4c3 = $('#r4c3').val(), r4c4 = $('#r4c4').val(), r4c5 = $('#r4c5').val();
+			r5c1 = $('#r5c1').val(), r5c2 = $('#r5c2').val(), r5c3 = $('#r5c3').val(), r5c4 = $('#r5c4').val(), r5c5 = $('#r5c5').val();
+			bingoNumbers = [r1c1,r1c2,r1c3,r1c4,r1c5,
+							r2c1,r2c2,r2c3,r2c4,r2c5,
+							r3c1,r3c2,r3c4,r3c5,
+							r4c1,r4c2,r4c3,r4c4,r4c5,
+							r5c1,r5c2,r5c3,r5c4,r5c5];
+			
+			checkRepeat();
+
+			if (r1c1 === "" && r1c2 === "" && r1c3 === "" && r1c4 === "" && r1c5 === "" && r2c1 === "" && r2c2 === "" && r2c3 === "" && r2c4 === "" && r2c5 === "" && r3c1 === "" && r3c2 === "" && r3c4 === "" && r3c5 === "" && r4c1 === "" && r4c2 === "" && r4c3 === "" && r4c4 === "" && r4c5 === "" && r5c1 === "" && r5c2 === "" && r5c3 === "" && r5c4 === "" && r5c5 === "") {
+				$('#clear').prop("disabled",true);
+			} else {
+				$('#clear').prop("disabled",false);
+			}
+		},0);
+
+		$('#randomize').click(function() {
+			var randomCard = [];
+
+			var randomNumber = function() {
+				return Math.ceil(Math.random() * 75);
+			}
+			tempVal = randomNumber();
+
+			while (randomCard.length < 24) {
+				for (var i = 0; i < randomCard.length; i++) {
+					while (tempVal === randomCard[i]) {
+						tempVal = randomNumber();
+						i = 0;
+					}
+				}
+				randomCard.push(tempVal);
+			}
+			
+			$('#r1c1').val(randomCard[0]), $('#r1c2').val(randomCard[1]), $('#r1c3').val(randomCard[2]), $('#r1c4').val(randomCard[3]), $('#r1c5').val(randomCard[4]);
+			$('#r2c1').val(randomCard[5]), $('#r2c2').val(randomCard[6]), $('#r2c3').val(randomCard[7]), $('#r2c4').val(randomCard[8]), $('#r2c5').val(randomCard[9]);
+			$('#r3c1').val(randomCard[10]), $('#r3c2').val(randomCard[11]), $('#r3c4').val(randomCard[12]), $('#r3c5').val(randomCard[13]);
+			$('#r4c1').val(randomCard[14]), $('#r4c2').val(randomCard[15]), $('#r4c3').val(randomCard[16]), $('#r4c4').val(randomCard[17]), $('#r4c5').val(randomCard[18]);
+			$('#r5c1').val(randomCard[19]), $('#r5c2').val(randomCard[20]), $('#r5c3').val(randomCard[21]), $('#r5c4').val(randomCard[22]), $('#r5c5').val(randomCard[23]);
+		});
+
+		$('input').keypress(function(key) {
+			if (key.charCode < 48 || key.charCode > 57) {
+				return false;
+			}
+		});
+
+		$(document).ready(function(){
+  			$('input').bind("cut copy paste",function(e) {
+      			e.preventDefault();
+  			});
+		});
+
+		$('input').focusout(function() {
+			if ($(this).val() !== "") {
+				$(this).val($(this).val() * 1);
+			}
+			if ($(this).val() != "" && $(this).val() == 0 || $(this).val() > 75) {
+				alert("You are allowed to input only valid Bingo numbers (1-75).");
+				$(this).select();
+			}
+		});
+
+		var checkRepeat = function() {
+			for (var i = 0; i < 24; i++) {
+				if ((r1c1Repeat === 1) && (r1c1 !== bingoNumbers[i] || r1c1 === "")) {
+					$('#r1c1Repeat').removeClass('repeat');
+					r1c1Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r1c1 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 0) {
+					$('#r1c1Repeat').addClass('repeat');
+					r1c1Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r1c2Repeat === 1) && (r1c2 !== bingoNumbers[i] || r1c2 === "")) {
+					$('#r1c2Repeat').removeClass('repeat');
+					r1c2Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r1c2 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 1) {
+					$('#r1c2Repeat').addClass('repeat');
+					r1c2Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r1c3Repeat === 1) && (r1c3 !== bingoNumbers[i] || r1c3 === "")) {
+					$('#r1c3Repeat').removeClass('repeat');
+					r1c3Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r1c3 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 2) {
+					$('#r1c3Repeat').addClass('repeat');
+					r1c3Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r1c4Repeat === 1) && (r1c4 !== bingoNumbers[i] || r1c4 === "")) {
+					$('#r1c4Repeat').removeClass('repeat');
+					r1c4Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r1c4 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 3) {
+					$('#r1c4Repeat').addClass('repeat');
+					r1c4Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r1c5Repeat === 1) && (r1c5 !== bingoNumbers[i] || r1c5 === "")) {
+					$('#r1c5Repeat').removeClass('repeat');
+					r1c5Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r1c5 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 4) {
+					$('#r1c5Repeat').addClass('repeat');
+					r1c5Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r2c1Repeat === 1) && (r2c1 !== bingoNumbers[i] || r2c1 === "")) {
+					$('#r2c1Repeat').removeClass('repeat');
+					r2c1Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r2c1 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 5) {
+					$('#r2c1Repeat').addClass('repeat');
+					r2c1Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r2c2Repeat === 1) && (r2c2 !== bingoNumbers[i] || r2c2 === "")) {
+					$('#r2c2Repeat').removeClass('repeat');
+					r2c2Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r2c2 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 6) {
+					$('#r2c2Repeat').addClass('repeat');
+					r2c2Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r2c3Repeat === 1) && (r2c3 !== bingoNumbers[i] || r2c3 === "")) {
+					$('#r2c3Repeat').removeClass('repeat');
+					r2c3Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r2c3 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 7) {
+					$('#r2c3Repeat').addClass('repeat');
+					r2c3Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r2c4Repeat === 1) && (r2c4 !== bingoNumbers[i] || r2c4 === "")) {
+					$('#r2c4Repeat').removeClass('repeat');
+					r2c4Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r2c4 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 8) {
+					$('#r2c4Repeat').addClass('repeat');
+					r2c4Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r2c5Repeat === 1) && (r2c5 !== bingoNumbers[i] || r2c5 === "")) {
+					$('#r2c5Repeat').removeClass('repeat');
+					r2c5Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r2c5 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 9) {
+					$('#r2c5Repeat').addClass('repeat');
+					r2c5Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r3c1Repeat === 1) && (r3c1 !== bingoNumbers[i] || r3c1 === "")) {
+					$('#r3c1Repeat').removeClass('repeat');
+					r3c1Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r3c1 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 10) {
+					$('#r3c1Repeat').addClass('repeat');
+					r3c1Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r3c2Repeat === 1) && (r3c2 !== bingoNumbers[i] || r3c2 === "")) {
+					$('#r3c2Repeat').removeClass('repeat');
+					r3c2Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r3c2 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 11) {
+					$('#r3c2Repeat').addClass('repeat');
+					r3c2Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r3c4Repeat === 1) && (r3c4 !== bingoNumbers[i] || r3c4 === "")) {
+					$('#r3c4Repeat').removeClass('repeat');
+					r3c4Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r3c4 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 12) {
+					$('#r3c4Repeat').addClass('repeat');
+					r3c4Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r3c5Repeat === 1) && (r3c5 !== bingoNumbers[i] || r3c5 === "")) {
+					$('#r3c5Repeat').removeClass('repeat');
+					r3c5Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r3c5 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 13) {
+					$('#r3c5Repeat').addClass('repeat');
+					r3c5Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r4c1Repeat === 1) && (r4c1 !== bingoNumbers[i] || r4c1 === "")) {
+					$('#r4c1Repeat').removeClass('repeat');
+					r4c1Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r4c1 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 14) {
+					$('#r4c1Repeat').addClass('repeat');
+					r4c1Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r4c2Repeat === 1) && (r4c2 !== bingoNumbers[i] || r4c2 === "")) {
+					$('#r4c2Repeat').removeClass('repeat');
+					r4c2Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r4c2 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 15) {
+					$('#r4c2Repeat').addClass('repeat');
+					r4c2Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r4c3Repeat === 1) && (r4c3 !== bingoNumbers[i] || r4c3 === "")) {
+					$('#r4c3Repeat').removeClass('repeat');
+					r4c3Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r4c3 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 16) {
+					$('#r4c3Repeat').addClass('repeat');
+					r4c3Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r4c4Repeat === 1) && (r4c4 !== bingoNumbers[i] || r4c4 === "")) {
+					$('#r4c4Repeat').removeClass('repeat');
+					r4c4Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r4c4 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 17) {
+					$('#r4c4Repeat').addClass('repeat');
+					r4c4Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r4c5Repeat === 1) && (r4c5 !== bingoNumbers[i] || r4c5 === "")) {
+					$('#r4c5Repeat').removeClass('repeat');
+					r4c5Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r4c5 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 18) {
+					$('#r4c5Repeat').addClass('repeat');
+					r4c5Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r5c1Repeat === 1) && (r5c1 !== bingoNumbers[i] || r5c1 === "")) {
+					$('#r5c1Repeat').removeClass('repeat');
+					r5c1Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r5c1 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 19) {
+					$('#r5c1Repeat').addClass('repeat');
+					r5c1Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r5c2Repeat === 1) && (r5c2 !== bingoNumbers[i] || r5c2 === "")) {
+					$('#r5c2Repeat').removeClass('repeat');
+					r5c2Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r5c2 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 20) {
+					$('#r5c2Repeat').addClass('repeat');
+					r5c2Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r5c3Repeat === 1) && (r5c3 !== bingoNumbers[i] || r5c3 === "")) {
+					$('#r5c3Repeat').removeClass('repeat');
+					r5c3Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r5c3 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 21) {
+					$('#r5c3Repeat').addClass('repeat');
+					r5c3Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r5c4Repeat === 1) && (r5c4 !== bingoNumbers[i] || r5c4 === "")) {
+					$('#r5c4Repeat').removeClass('repeat');
+					r5c4Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r5c4 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 22) {
+					$('#r5c4Repeat').addClass('repeat');
+					r5c4Repeat = 1;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if ((r5c5Repeat === 1) && (r5c5 !== bingoNumbers[i] || r5c5 === "")) {
+					$('#r5c5Repeat').removeClass('repeat');
+					r5c5Repeat = 0;
+				}
+			}
+			for (var i = 0; i < 24; i++) {
+				if (r5c5 === bingoNumbers[i] && bingoNumbers[i] !== "" && i !== 23) {
+					$('#r5c5Repeat').addClass('repeat');
+					r5c5Repeat = 1;
+				}
+			}
+		}
+
+		$('#clear').click(function() {
+			$('input').val("");
+		});
+
+		$('#play').click(function() {
+			if (r1c1 === "" || r1c2 === "" || r1c3 === "" || r1c4 === "" || r1c5 === "" || r2c1 === "" || r2c2 === "" || r2c3 === "" || r2c4 === "" || r2c5 === "" || r3c1 === "" || r3c2 === "" || r3c4 === "" || r3c5 === "" || r4c1 === "" || r4c2 === "" || r4c3 === "" || r4c4 === "" || r4c5 === "" || r5c1 === "" || r5c2 === "" || r5c3 === "" || r5c4 === "" || r5c5 === "") {
+				alert("You must fill in all the grid squares to continue.");
+			} else if (r1c1Repeat + r1c2Repeat + r1c3Repeat + r1c4Repeat + r1c5Repeat + r2c1Repeat + r2c2Repeat + r2c3Repeat + r2c4Repeat + r2c5Repeat + r3c1Repeat + r3c2Repeat + r3c4Repeat + r3c5Repeat + r4c1Repeat + r4c2Repeat + r4c3Repeat + r4c4Repeat + r4c5Repeat + r5c1Repeat + r5c2Repeat + r5c3Repeat + r5c4Repeat + r5c5Repeat !== 0) {
+				alert("You are not allowed to repeat numbers in the Bingo card.");
+			} else {
+				r1c1 = $('#r1c1').val();
+				sessionStorage.setItem('r1c1', r1c1);
+				r1c2 = $('#r1c2').val();
+				sessionStorage.setItem('r1c2', r1c2);
+				r1c3 = $('#r1c3').val();
+				sessionStorage.setItem('r1c3', r1c3);
+				r1c4 = $('#r1c4').val();
+				sessionStorage.setItem('r1c4', r1c4);
+				r1c5 = $('#r1c5').val();
+				sessionStorage.setItem('r1c5', r1c5);
+				r2c1 = $('#r2c1').val();
+				sessionStorage.setItem('r2c1', r2c1);
+				r2c2 = $('#r2c2').val();
+				sessionStorage.setItem('r2c2', r2c2);
+				r2c3 = $('#r2c3').val();
+				sessionStorage.setItem('r2c3', r2c3);
+				r2c4 = $('#r2c4').val();
+				sessionStorage.setItem('r2c4', r2c4);
+				r2c5 = $('#r2c5').val();
+				sessionStorage.setItem('r2c5', r2c5);
+				r3c1 = $('#r3c1').val();
+				sessionStorage.setItem('r3c1', r3c1);
+				r3c2 = $('#r3c2').val();
+				sessionStorage.setItem('r3c2', r3c2);
+				r3c4 = $('#r3c4').val();
+				sessionStorage.setItem('r3c4', r3c4);
+				r3c5 = $('#r3c5').val();
+				sessionStorage.setItem('r3c5', r3c5);
+				r4c1 = $('#r4c1').val();
+				sessionStorage.setItem('r4c1', r4c1);
+				r4c2 = $('#r4c2').val();
+				sessionStorage.setItem('r4c2', r4c2);
+				r4c3 = $('#r4c3').val();
+				sessionStorage.setItem('r4c3', r4c3);
+				r4c4 = $('#r4c4').val();
+				sessionStorage.setItem('r4c4', r4c4);
+				r4c5 = $('#r4c5').val();
+				sessionStorage.setItem('r4c5', r4c5);
+				r5c1 = $('#r5c1').val();
+				sessionStorage.setItem('r5c1', r5c1);
+				r5c2 = $('#r5c2').val();
+				sessionStorage.setItem('r5c2', r5c2);
+				r5c3 = $('#r5c3').val();
+				sessionStorage.setItem('r5c3', r5c3);
+				r5c4 = $('#r5c4').val();
+				sessionStorage.setItem('r5c4', r5c4);
+				r5c5 = $('#r5c5').val();
+				sessionStorage.setItem('r5c5', r5c5);
+
+				window.location = "game.html";
+			}
+		});
+
+		$('#back').click(function() {
+			if (!(r1c1 === "" && r1c2 === "" && r1c3 === "" && r1c4 === "" && r1c5 === "" && r2c1 === "" && r2c2 === "" && r2c3 === "" && r2c4 === "" && r2c5 === "" && r3c1 === "" && r3c2 === "" && r3c4 === "" && r3c5 === "" && r4c1 === "" && r4c2 === "" && r4c3 === "" && r4c4 === "" && r4c5 === "" && r5c1 === "" && r5c2 === "" && r5c3 === "" && r5c4 === "" && r5c5 === "")) {
+				if (confirm("Are you sure you want to return to the main menu and discard Bingo card data?")) {
+					window.location = 'index.html';
+				}
+			} else {
+				window.location = 'index.html';
+			}
+		});
+	</script>
+</body>
+</html>
