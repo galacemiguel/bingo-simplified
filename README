@@ -6,12 +6,17 @@ Description: Simplified Bingo Game
 
 Contributors: Miguel Galace, John Reyes
 
+Download (v2.0): http://galacemiguel.github.io/bingo-simplified/download
+
+Play online (v2.1): http://galacemiguel.github.io/bingo-simplified
+
 === Changelog ===
 
 = 2.1 =
 * Mismatched numbers now show
 * Code optimization
 * Updated instructions
+* Disabled auto-pause if game has not started
 * Lowered max timeout to 15 minutes
 * Lowered maximum number of turns to 300
 
