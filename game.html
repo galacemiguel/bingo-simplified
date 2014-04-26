@@ -249,7 +249,7 @@
 			font-family: MyriadPro-Light;
 			font-size: 28px;
 			color: white;
-			font-weight: 300;
+			font-weight: 100;
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -358,7 +358,7 @@
 			font-family: MyriadPro-Light;
 			font-size: 14px;
 			color: white;
-			font-weight: 300;
+			font-weight: 100;
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -845,7 +845,11 @@
 			}
 		};
 		$('#btnPause').click(pause);
-		$(window).blur(pause);
+		$(window).blur(function() {
+			if (time !== 0) {
+				pause();
+			}
+		});
 
 		$('#btnPlay').hide();
 		$('#btnPlay').click(function() {
