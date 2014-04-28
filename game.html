@@ -871,7 +871,7 @@
 		};
 		$('#btnPause').click(pause);
 		$(window).blur(function() {
-			if (window.chrome) {
+			if (window.chrome && time !== 0) {
 				pause();
 			}
 		});
