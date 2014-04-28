@@ -871,8 +871,7 @@
 		};
 		$('#btnPause').click(pause);
 		$(window).blur(function() {
-			var isChrome = !!window.chrome && !isOpera;
-			if (time !== 0 && isChrome) {
+			if (window.chrome) {
 				pause();
 			}
 		});
