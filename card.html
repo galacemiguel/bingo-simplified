@@ -2,7 +2,7 @@
 <head>
 	<link rel="shortcut icon" href="Resources/favicon.ico">
 	<title>BINGO Simplified&trade;</title>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<style>
 		@font-face {
 			font-family: 'MyriadPro-Light';
@@ -34,6 +34,7 @@
 			font-size: 35px;
 			color: white;
 			font-weight: 100;
+			transform: scale(1.1,1);
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -42,7 +43,7 @@
 			width: 150px;
 			height: 1px;
 			margin: -16px auto 13px;
-      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+			background: linear-gradient(to right, rgba(255,255,255,0), white, rgba(255,255,255,0));
 		}
 
 		button {
@@ -52,7 +53,8 @@
 			width: 216px;
 			height: 36px;
 			border: 2px solid #efefef;
-			outline: 1px solid #acacac;
+			outline: none;
+			box-shadow: 0 0 0 1px #acacac;
 			margin: 0 8px 10px 8px;
 			background: transparent;
 			font-family: MyriadPro-Light;
@@ -62,12 +64,17 @@
 			cursor: pointer;
 		}
 
+		button::-moz-focus-inner { 
+			border: 0;
+			padding: 0;
+		}
+
 		button:hover:enabled {
-			outline: 1px solid #7eb4ea;
+			box-shadow: 0 0 0 1px #7eb4ea;
 		}
 
 		button:active:enabled {
-			outline: 1px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		a {
@@ -80,21 +87,30 @@
 		}
 
 		#card {
+			position: relative;
 			z-index: 2;
+			display: block;
 			width: 262px;
 			height: 262px;
-			display: block;
 			margin: 0 auto;
-			box-shadow: 0 0 100px rgba(0,0,0,.4);
-			cursor: default;
+			font-family: MyriadPro-Light;
+			color: white;
+			box-shadow: 0 0 0 1px #acacac, 0 0 100px rgba(0,0,0,.4);
+		}
+
+		#card:hover {
+			box-shadow: 0 0 0 1px #7eb4ea, 0 0 100px rgba(0,0,0,.4);
+		}
+
+		#card:active {
+			box-shadow: 0 0 0 1px #3399ff, 0 0 100px rgba(0,0,0,.4);
 		}
 
 		table {
 			width: 262px;
 			height: 262px;
-			margin: -8px;
-  			border-collapse: collapse;
-  			box-shadow: inset 0 0 0 3px #707070;
+			border-collapse: collapse;
+			box-shadow: inset 0 0 0 1px #efefef, inset 0 0 0 3px #707070;
 		}
 
 		.cell {
@@ -119,7 +135,7 @@
 			top: 10px;
 			width: 36px;
 			height: 34px;
-			margin: -7px;
+			margin: -5px;
 			font-family: Segoe UI;
 			font-size: 25px;
 			text-align: center;
@@ -127,11 +143,18 @@
 
 		#freeSpace {
 			position: absolute;
-			top: 113px;
-			left: 112px;
+			top: 115px;
+			left: 114px;
 			border: none;
 			font-size: 16px;
 			letter-spacing: 0;
+		}
+
+		@-moz-document url-prefix() {
+		    #freeSpace {
+		    	top: 112px;
+		    	line-height: 20px;
+		    }
 		}
 
 		span {
@@ -146,7 +169,7 @@
 		}
 
 		:disabled {
-			outline: 1px solid #d9d9d9;
+			box-shadow: 0 0 0 1px #d9d9d9;
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.85);
 			cursor: default;
@@ -159,7 +182,7 @@
 		<h1>Create Your Bingo Card</h1>
 		<div id="separator"></div>
 		<button id="randomize">Randomize</button>
-		<button id="card">
+		<div id="card">
 			<table>
 				<tr>
 					<td><div class="cell" id="r1c1Repeat"><input type="text" id="r1c1" maxlength="2"></div></td>
@@ -197,7 +220,7 @@
 					<td><div class="cell" id="r5c5Repeat"><input type="text" id="r5c5" maxlength="2"></div></td>
 				</tr>
 			</table>
-		</button>
+		</div>
 		<button id="clear">Clear</button>
 		<button id="play">Play</button>
 		<button id="back">Back</button>
@@ -263,7 +286,9 @@
 		});
 
 		$('input').keypress(function(key) {
-			if (key.charCode < 48 || key.charCode > 57) {
+			if (key.keyCode === 8) {
+				return;
+			} else if (key.charCode < 48 || key.charCode > 57) {
 				return false;
 			}
 		});
@@ -280,6 +305,7 @@
 			}
 			if ($(this).val() != "" && $(this).val() == 0 || $(this).val() > 75) {
 				alert("You are allowed to input only valid Bingo numbers (1-75).");
+				$(this).val("");
 				$(this).select();
 			}
 		});
@@ -634,7 +660,7 @@
 				r5c5 = $('#r5c5').val();
 				sessionStorage.setItem('r5c5', r5c5);
 
-				window.location = "http://galacemiguel.github.io/bingo-simplified/game";
+				window.location = "game.html";
 			}
 		});
 

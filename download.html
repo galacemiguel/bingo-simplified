@@ -2,7 +2,7 @@
 <head>
 	<link rel="shortcut icon" href="Resources/favicon.ico">
 	<title>BINGO Simplified&trade;</title>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<style>
 		@font-face {
 			font-family: 'MyriadPro-Light';
@@ -33,6 +33,7 @@
 			height: 119px;
 			padding: 5px;
 			margin: 41px auto -5px;
+			transform: scale(.68,.68);
 			-webkit-transform: scale(.68,.68);
 		}
 
@@ -71,6 +72,7 @@
 			font-size: 100px;
 			color: white;
 			letter-spacing: -2px;
+			transform: scale(1.1,1);
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -88,7 +90,7 @@
 			width: 225px;
 			height: 2px;
 			margin: 0 auto;
-      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+			background: linear-gradient(to right, rgba(255,255,255,0), white, rgba(255,255,255,0));
 		}
 
 		h1 {
@@ -122,6 +124,11 @@
 			color: white;
 			letter-spacing: 1px;
 			cursor: pointer;
+		}
+
+		button::-moz-focus-inner { 
+			border: 0;
+			padding: 0;
 		}
 
 		button:hover {
