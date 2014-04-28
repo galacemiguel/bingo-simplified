@@ -683,6 +683,7 @@
 				}
 			}
 		}
+
 		var dialogPause = function() {
 			play = false;
 			$('.btnBingo').prop("disabled",true);
@@ -797,29 +798,29 @@
 		$('#r4c1').click(mark), $('#r4c2').click(mark), $('#r4c3').click(mark), $('#r4c4').click(mark), $('#r4c5').click(mark),
 		$('#r5c1').click(mark), $('#r5c2').click(mark), $('#r5c3').click(mark), $('#r5c4').click(mark), $('#r5c5').click(mark);
 
-		$('#numberBox').click(function() {
+		var callNumber = function() {
 			if (gameEnd === false) {
 				if ($('#turnsBox').val() < 300) {
 					play = true;
 
-					$(this).removeClass('active');
+					$('#numberBox').removeClass('active');
 
 					turns += 1;
 					$('#turnsBox').val(turns);
 
-					$(this).val(calledNumbers[calledNumberId])
+					$('#numberBox').val(calledNumbers[calledNumberId])
 					if (calledNumberId !== 75) {
 						calledNumberId += 1;
 					} else {
 						if (turns === 76) {
-							$(this).val("#");
+							$('#numberBox').val("#");
 							hideBingoNumbers();
 							alert("All Bingo numbers have been called. Numbers will now repeat.");
 							showBingoNumbers();
 						}
 						callNumbers();
 						calledNumberId = 0;
-						$(this).val(calledNumbers[calledNumberId])
+						$('#numberBox').val(calledNumbers[calledNumberId])
 						calledNumberId += 1;
 					}
 
@@ -831,6 +832,12 @@
 					alert("You have reached the maximum number of turns. Returning to main menu...");
 					window.location = "http://galacemiguel.github.io/bingo-simplified";
 				}
+			}
+		}
+		$('#numberBox').click(callNumber);
+		$(window).keydown(function(key) {
+			if (key.keyCode === 17) {
+				callNumber();
 			}
 		});
 
