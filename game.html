@@ -2,7 +2,7 @@
 <head>
 	<link rel="shortcut icon" href="Resources/favicon.ico">
 	<title>BINGO Simplified&trade;</title>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<style>
 		@font-face {
 			font-family: 'MyriadPro-Light';
@@ -35,6 +35,7 @@
 			width: 394px;
 			height: 119px;
 			padding: 5px;
+			transform: scale(.68,.68);
 			-webkit-transform: scale(.68,.68);
 		}
 
@@ -67,20 +68,22 @@
 			left: 3px;
 			padding: 0;
 			border: 0;
-			outline: 1.5px solid #acacac;
+			box-shadow: 0 0 0 1px #acacac;
+			outline: none;
 			background: transparent;
 			cursor: pointer;
 		}
 
 		.btnBingo:hover:enabled {
-			outline: 1.5px solid #7eb4ea;
+			box-shadow: 0 0 0 1px #7eb4ea;
 		}
 
 		.btnBingo:active:enabled {
-			outline: 1.5px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		.btnBingo:disabled {
+			outline: none;
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.13);
 			cursor: default;
@@ -98,6 +101,7 @@
 			font-size: 100px;
 			color: white;
 			letter-spacing: -2px;
+			transform: scale(1.1,1);
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -115,7 +119,12 @@
 			width: 225px;
 			height: 2px;
 			margin: 0 auto;
-      		background: -webkit-linear-gradient(left, transparent 0%, white 50%, transparent 100%);
+			background: linear-gradient(to right, rgba(255,255,255,0), white, rgba(255,255,255,0));
+		}
+
+		button::-moz-focus-inner { 
+			border: 0;
+			padding: 0;
 		}
 
 		a {
@@ -130,34 +139,32 @@
 			display: block;
 			width: 262px;
 			height: 262px;
-			border: 2px solid #efefef;
-			outline: 1px solid #acacac;
 			background: transparent;
 			font-family: MyriadPro-Light;
 			color: white;
-			box-shadow: 0 0 100px rgba(0,0,0,.4);
+			box-shadow: 0 0 0 1px #acacac, 0 0 100px rgba(0,0,0,.4);
 			cursor: default;
 		}
 
-		#card:hover:enabled {
-			outline: 1px solid #7eb4ea;
+		#card.enabled:hover {
+			box-shadow: 0 0 0 1px #7eb4ea, 0 0 100px rgba(0,0,0,.4);
 		}
 
-		#card:active:enabled {
-			outline: 1px solid #3399ff;
+		#card.enabled:active {
+			box-shadow: 0 0 0 1px #3399ff, 0 0 100px rgba(0,0,0,.4);
 		}
 
-		#card:disabled {
+		#card.disabled {
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.6);
+			box-shadow: 0 0 100px rgba(0,0,0,.4)
 			cursor: default;
 		}
 
 		table {
 			width: 262px;
 			height: 262px;
-			margin: -8px;
-  			border-collapse: collapse;
+			border-collapse: collapse;
 		}
 
 		.cell {
@@ -166,7 +173,7 @@
 			left: 11px;
 			width: 50px;
 			height: 50px;
-			margin: -12px;
+			margin: -2px;
 		}
 
 		td {
@@ -197,7 +204,7 @@
 		.btnCell:active:enabled {
 			width: 40px;
 			height: 40px;
-			outline: 1px solid black;
+			box-shadow: 0 0 0 1px black;
 			border: 1px solid #555555;
 			margin: -5px;
 		}
@@ -209,7 +216,7 @@
 		.btnCellActive {
 			width: 40px;
 			height: 40px;
-			outline: 1px solid black;
+			box-shadow: 0 0 0 1px black;
 			border: 1px solid #555555;
 			margin: -5px;
 		}
@@ -225,11 +232,19 @@
 
 		#freeSpace {
 			position: absolute;
-			top: 114px;
-			left: 113px;
+			top: 116px;
+			left: 115px;
 			border: none;
 			font-size: 16px;
+			text-align: center;
 			letter-spacing: 0;
+		}
+
+		@-moz-document url-prefix() {
+		    #freeSpace {
+		    	top: 113px;
+		    	line-height: 20px;
+		    }
 		}
 
 		span {
@@ -250,6 +265,7 @@
 			font-size: 28px;
 			color: white;
 			font-weight: 100;
+			transform: scale(1.1,1);
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -261,7 +277,8 @@
 		input.hud[type="button"] {
 			display: block;
 			border: 2px solid #efefef;
-			outline: 1px solid #acacac;
+			outline: none;
+			box-shadow: 0 0 0 1px #acacac;
 			width: 108px;
 			height: 108px;
 			margin-bottom: 29px;
@@ -273,11 +290,11 @@
 		}
 
 		input.hud[type="button"]:hover:enabled {
-			outline: 1px solid #7eb4ea;
+			box-shadow: 0 0 0 1px #7eb4ea;
 		}
 
 		input.hud[type="button"]:active:enabled {
-			outline: 1px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		input.hud[type="button"]:disabled {
@@ -287,7 +304,7 @@
 		}
 
 		input.active[type="button"] {
-			outline: 1.5px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		#time {
@@ -311,7 +328,8 @@
 			top: 182px;
 			left: 496px;
 			border: 2px solid #efefef;
-			outline: 1px solid #acacac;
+			outline: none;
+			box-shadow: 0 0 0 1px #acacac;
 			width: 103px;
 			height: 103px;
 			background: transparent;
@@ -319,7 +337,7 @@
 		}
 
 		.active {
-			outline: 1.5px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		#btnRestart {
@@ -332,11 +350,11 @@
 		}
 
 		button:hover:enabled {
-			outline: 1px solid #7eb4ea;
+			box-shadow: 0 0 0 1px #7eb4ea;
 		}
 
 		button:active:enabled {
-			outline: 1px solid #3399ff;
+			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		button:disabled {
@@ -359,6 +377,7 @@
 			font-size: 14px;
 			color: white;
 			font-weight: 100;
+			transform: scale(1.1,1);
 			-webkit-transform: scale(1.1,1);
 		}
 
@@ -392,7 +411,7 @@
 			<div id="title">BINGO<br /><span id="subtitle">Simplified&trade;</span></div>
 			<div id="separator"></div>
 		</div>
-		<button id="card">
+		<div id="card" class="enabled">
 			<table>
 				<tr>
 					<td><div class="cell" id="r1c1Repeat"><input type="button" class="btnCell" id="r1c1"></div></td>
@@ -430,7 +449,7 @@
 					<td><div class="cell" id="r5c5Repeat"><input type="button" class="btnCell" id="r5c5"></div></td>
 				</tr>
 			</table>
-		</button>
+		</div>
 		<div id="hud">
 			<h1>Number</h1>
 			<input type="button" class="hud active" id="numberBox" value="#">
@@ -664,7 +683,8 @@
 			$('#numberBox').removeClass('active');
 			$('#numberBox').prop("disabled",true);
 			$('#turnsBox').prop("disabled",true);
-			$('#card').prop("disabled",true);
+			$('#card').removeClass('enabled');
+			$('#card').addClass('disabled');
 			$('.btnCell').prop("disabled",true);
 			hideBingoNumbers();
 			$('#timeBox').prop("disabled",true);
@@ -687,8 +707,8 @@
 				}
 				$('#numberBox').prop("disabled",false);
 				$('#turnsBox').prop("disabled",false);
-				$('#card').prop("disabled",false);
-				$('.btnCell').prop("disabled",false);
+				$('#card').removeClass('disabled');
+				$('#card').addClass('enabled');
 				showBingoNumbers();
 				$('#timeBox').prop("disabled",false);
 			}
@@ -699,6 +719,10 @@
 			$('#btnQuit').prop("disabled",false);
 			$('img').fadeTo(0,1);
 			$('h2').fadeTo(0,1);
+			var isFirefox = typeof InstallTrigger !== 'undefined';
+			if (isFirefox) {
+				timer();
+			}
 		}
 
 		$('.btnBingo').click(function() {
@@ -837,7 +861,8 @@
 				$('#numberBox').removeClass('active');
 				$('#numberBox').prop("disabled",true);
 				$('#turnsBox').prop("disabled",true);
-				$('#card').prop("disabled",true);
+				$('#card').removeClass('enabled');
+				$('#card').addClass('disabled');
 				$('.btnCell').prop("disabled",true);
 				hideBingoNumbers();
 				$('#timeBox').prop("disabled",true);
@@ -846,7 +871,8 @@
 		};
 		$('#btnPause').click(pause);
 		$(window).blur(function() {
-			if (time !== 0) {
+			var isChrome = !!window.chrome && !isOpera;
+			if (time !== 0 && isChrome) {
 				pause();
 			}
 		});
@@ -867,7 +893,8 @@
 				$('#numberBox').addClass('active');
 			}
 			$('#turnsBox').prop("disabled",false);
-			$('#card').prop("disabled",false);
+			$('#card').removeClass('disabled');
+			$('#card').addClass('enabled');
 			showBingoNumbers();
 			$('#timeBox').prop("disabled",false);
 		});
@@ -878,7 +905,8 @@
 					$('#numberBox').prop("disabled",false);
 					$('#turnsBox').prop("disabled",false);
 					$('.btnBingo').prop("disabled",false);
-					$('#card').prop("disabled",false);
+					$('#card').removeClass('disabled');
+					$('#card').addClass('enabled');
 					$('.btnCell').prop("disabled",false);
 					$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
 					$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
@@ -906,7 +934,8 @@
 						$('#turnsBox').prop("disabled",false);
 						$('#turnsBox').val("0");
 						$('.btnBingo').prop("disabled",false);
-						$('#card').prop("disabled",false);
+						$('#card').removeClass('disabled');
+						$('#card').addClass('enabled');
 						$('.btnCell').removeClass('marked');
 						$('.btnCell').prop("disabled",false);
 						$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
