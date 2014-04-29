@@ -232,7 +232,11 @@
 
 		.marked {
 			background: #6d6d66;
-			box-shadow: inset 0px 2px 0px white, inset -2px 0px 0px white, inset 0px -2px 0px white, inset 2px 0px 0px white;
+			box-shadow: inset 0 0 0 2px white;
+		}
+
+		.pattern {
+			background: #7eb4ea;
 		}
 
 		#freeSpace {
@@ -774,8 +778,89 @@
 				$(this).addClass('marked');
 				$(this).prop("disabled",true);
 
-				if (($('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked')) || ($('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked')) || ($('#r3c1').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r3c5').hasClass('marked')) || ($('#r4c1').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r4c5').hasClass('marked')) || ($('#r5c1').hasClass('marked') && $('#r5c2').hasClass('marked') && $('#r5c3').hasClass('marked') && $('#r5c4').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c1').hasClass('marked') && $('#r2c1').hasClass('marked') && $('#r3c1').hasClass('marked') && $('#r4c1').hasClass('marked') && $('#r5c1').hasClass('marked')) || ($('#r1c2').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c2').hasClass('marked')) || ($('#r1c3').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r5c3').hasClass('marked')) || ($('#r1c4').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c4').hasClass('marked')) || ($('#r1c5').hasClass('marked') && $('#r2c5').hasClass('marked') && $('#r3c5').hasClass('marked') && $('#r4c5').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c5').hasClass('marked')) || ($('#r1c5').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c1').hasClass('marked'))) {
+				var r1 = $('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked');
+				var r2 = $('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked');
+				var r3 = $('#r3c1').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r3c5').hasClass('marked');
+				var r4 = $('#r4c1').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r4c5').hasClass('marked');
+				var r5 = $('#r5c1').hasClass('marked') && $('#r5c2').hasClass('marked') && $('#r5c3').hasClass('marked') && $('#r5c4').hasClass('marked') && $('#r5c5').hasClass('marked');
+				var c1 = $('#r1c1').hasClass('marked') && $('#r2c1').hasClass('marked') && $('#r3c1').hasClass('marked') && $('#r4c1').hasClass('marked') && $('#r5c1').hasClass('marked');
+				var c2 = $('#r1c2').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c2').hasClass('marked');
+				var c3 = $('#r1c3').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r5c3').hasClass('marked');
+				var c4 = $('#r1c4').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c4').hasClass('marked');
+				var c5 = $('#r1c5').hasClass('marked') && $('#r2c5').hasClass('marked') && $('#r3c5').hasClass('marked') && $('#r4c5').hasClass('marked') && $('#r5c5').hasClass('marked');
+				var d1 = $('#r1c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c5').hasClass('marked');
+				var d2 = $('#r1c5').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c1').hasClass('marked');
+				if (r1 || r2 || r3 || r4 || r5 || c1 || c2 || c3 || c4 || c5 || d1 || d2) {
 				gameEnd = true;
+				if (r1) {
+					$('#r1c1').addClass('pattern');
+					$('#r1c2').addClass('pattern');
+					$('#r1c3').addClass('pattern');
+					$('#r1c4').addClass('pattern');
+					$('#r1c5').addClass('pattern');
+				} else if (r2) {
+					$('#r2c1').addClass('pattern');
+					$('#r2c2').addClass('pattern');
+					$('#r2c3').addClass('pattern');
+					$('#r2c4').addClass('pattern');
+					$('#r2c5').addClass('pattern');
+				} else if (r3) {
+					$('#r3c1').addClass('pattern');
+					$('#r3c2').addClass('pattern');
+					$('#r3c4').addClass('pattern');
+					$('#r3c5').addClass('pattern');
+				} else if (r4) {
+					$('#r4c1').addClass('pattern');
+					$('#r4c2').addClass('pattern');
+					$('#r4c3').addClass('pattern');
+					$('#r4c4').addClass('pattern');
+					$('#r4c5').addClass('pattern');
+				} else if (r5) {
+					$('#r5c1').addClass('pattern');
+					$('#r5c2').addClass('pattern');
+					$('#r5c3').addClass('pattern');
+					$('#r5c4').addClass('pattern');
+					$('#r5c5').addClass('pattern');
+				} else if (c1) {
+					$('#r1c1').addClass('pattern');
+					$('#r2c1').addClass('pattern');
+					$('#r3c1').addClass('pattern');
+					$('#r4c1').addClass('pattern');
+					$('#r5c1').addClass('pattern');
+				} else if (c2) {
+					$('#r1c2').addClass('pattern');
+					$('#r2c2').addClass('pattern');
+					$('#r3c2').addClass('pattern');
+					$('#r4c2').addClass('pattern');
+					$('#r5c2').addClass('pattern');
+				} else if (c3) {
+					$('#r1c3').addClass('pattern');
+					$('#r2c3').addClass('pattern');
+					$('#r4c3').addClass('pattern');
+					$('#r5c3').addClass('pattern');
+				} else if (c4) {
+					$('#r1c4').addClass('pattern');
+					$('#r2c4').addClass('pattern');
+					$('#r3c4').addClass('pattern');
+					$('#r4c4').addClass('pattern');
+					$('#r5c4').addClass('pattern');
+				} else if (c5) {
+					$('#r1c5').addClass('pattern');
+					$('#r2c5').addClass('pattern');
+					$('#r3c5').addClass('pattern');
+					$('#r4c5').addClass('pattern');
+					$('#r5c5').addClass('pattern');
+				} else if (d1) {
+					$('#r1c1').addClass('pattern');
+					$('#r2c2').addClass('pattern');
+					$('#r4c4').addClass('pattern');
+					$('#r5c5').addClass('pattern');
+				} else if (d2) {
+					$('#r1c5').addClass('pattern');
+					$('#r2c4').addClass('pattern');
+					$('#r4c2').addClass('pattern');
+					$('#r5c1').addClass('pattern');
+				}
 				alert("You completed a Bingo pattern! Click on the Bingo logo to finish.");
 				$('.btnBingo').addClass('active');
 				}
@@ -835,7 +920,7 @@
 		}
 		$('#numberBox').click(callNumber);
 		$(window).keydown(function(key) {
-			if (key.keyCode === 17) {
+			if (!($('#btnPause').is(':hidden')) && key.keyCode === 17) {
 				callNumber();
 			}
 		});
