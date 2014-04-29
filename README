@@ -14,6 +14,7 @@ Play online (v2.1): http://galacemiguel.github.io/bingo-simplified
 
 = 2.1 =
 * Winning Bingo pattern is now highlighted
+* Number call shortcut key (Ctrl) added
 * Mismatched numbers now show
 * Code optimization
 * Updated instructions
