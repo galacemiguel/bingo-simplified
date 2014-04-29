@@ -41,6 +41,8 @@
 		}
 
 		#box {
+			position: relative;
+			z-index: -1;
 			width: 97px;
 			height: 97px;
 		}
@@ -79,6 +81,10 @@
 		}
 
 		.btnBingo:active:enabled {
+			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
+		}
+
+		.btnBingo.active {
 			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
 		}
 
