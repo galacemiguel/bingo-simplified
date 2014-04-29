@@ -690,6 +690,7 @@
 		var dialogPause = function() {
 			play = false;
 			$('.btnBingo').prop("disabled",true);
+			$('#numberBox').val("#");
 			$('#numberBox').removeClass('active');
 			$('#numberBox').prop("disabled",true);
 			$('#turnsBox').prop("disabled",true);
@@ -712,7 +713,9 @@
 			}
 			if (!($('#btnPause').is(':hidden'))) {
 				$('.btnBingo').prop("disabled",false);
-				if (time === 0) {
+				if (time !== 0) {
+					$('#numberBox').val(calledNumbers[calledNumberId - 1]);
+				} else {
 					$('#numberBox').addClass('active');
 				}
 				$('#numberBox').prop("disabled",false);
@@ -760,8 +763,10 @@
 					window.location = "http://galacemiguel.github.io/bingo-simplified";
 				}
 			} else if (time !== 0) {
+				$('#numberBox').val("#");
 				hideBingoNumbers();
 				alert("You have not completed a Bingo pattern yet.");
+				$('#numberBox').val(calledNumbers[calledNumberId - 1]);
 				showBingoNumbers();
 			}
 		});
@@ -955,6 +960,7 @@
 				$('#btnPlay').show();
 
 				$('.btnBingo').prop("disabled",true);
+				$('#numberBox').val("#");
 				$('#numberBox').removeClass('active');
 				$('#numberBox').prop("disabled",true);
 				$('#turnsBox').prop("disabled",true);
@@ -984,6 +990,9 @@
 			$('#btnPause').show();
 
 			$('.btnBingo').prop("disabled",false);
+			if (time !== 0) {
+				$('#numberBox').val(calledNumbers[calledNumberId - 1]);
+			}
 			$('#numberBox').prop("disabled",false);
 			if (time === 0) {
 				$('#numberBox').addClass('active');
