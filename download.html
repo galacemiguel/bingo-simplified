@@ -7,9 +7,9 @@
 		@font-face {
 			font-family: 'MyriadPro-Light';
 			src: url('Resources/MyriadPro-Light.eot?') format('eot'), 
-				url('Resources/MyriadPro-Light.otf')  format('opentype'),
+				url('Resources/MyriadPro-Light.otf') format('opentype'),
 				url('Resources/MyriadPro-Light.woff') format('woff'), 
-				url('Resources/MyriadPro-Light.ttf')  format('truetype'),
+				url('Resources/MyriadPro-Light.ttf') format('truetype'),
 				url('Resources/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
 		}
 
@@ -65,13 +65,13 @@
 			position: relative;
 			top: -123px;
 			left: 130px;
+			display: inline-block;
 			width: 269px;
 			height: 121px;
-			display: inline-block;
 			font-family: MyriadPro-Light;
-			font-weight: 100;
 			font-size: 100px;
 			color: white;
+			font-weight: 100;
 			letter-spacing: -2px;
 			-webkit-transform: scale(1.1,1);
 			transform: scale(1.1,1);
@@ -117,15 +117,13 @@
 		}
 
 		button {
-			position: relative;
-			z-index: 1;
+			display: block;
 			width: 216px;
 			height: 36px;
-			display: block;
 			border: 2px solid #efefef;
 			outline: 1px solid #acacac;
 			margin: 15px 0 10px;
-			background: transparent;
+			background: none;
 			font-family: MyriadPro-Light;
 			font-size: 28px;
 			color: white;
@@ -212,6 +210,7 @@
 		</div>
 		<div id="year">2013-14</div>
 	</div>
+
 	<script>
 		$('#download').click(function() {
 			window.location = 'Resources/BINGO Simplified™.rar';

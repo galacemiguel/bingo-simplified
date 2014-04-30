@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<head>
+	<link rel="shortcut icon" href="Resources/favicon.ico">
+	<title>BINGO Simplified&trade;</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<style>
+		@font-face {
+			font-family: 'MyriadPro-Light';
+			src: url('Resources/MyriadPro-Light.eot?') format('eot'), 
+				url('Resources/MyriadPro-Light.otf') format('opentype'),
+				url('Resources/MyriadPro-Light.woff') format('woff'), 
+				url('Resources/MyriadPro-Light.ttf') format('truetype'),
+				url('Resources/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
+		}
+
+		body {
+			background: -webkit-radial-gradient(circle, #7f7f7f, #666666);
+			background: radial-gradient(circle, #7f7f7f, #666666);
+		}
+
+		#container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 800px;
+			height: 499px;
+			margin: auto;
+		}
+
+		#bingo {
+			position: absolute;
+			top: 20px;
+			left: 51px;
+			font-family: MyriadPro-Light;
+			font-size: 150px;
+			color: white;
+			font-weight: 100;
+			letter-spacing: -2px;
+			line-height: 120px;
+			-webkit-transform: scale(1.1,1);
+			transform: scale(1.1,1);
+		}
+
+		#bingo1 {
+			opacity: 0.33;
+		}
+
+		#bingo2 {
+			opacity: 0.66;
+		}
+
+		#time {
+			position: absolute;
+			top: 12px;
+			left: 522px;
+			font-family: MyriadPro-Light;
+			font-size: 75px;
+			color: white;
+		}
+
+		#playerTime {
+			position: absolute;
+			top: 60px;
+			left: 522px;
+			font-family: Segoe UI;
+			font-size: 100px;
+			color: white;
+		}
+
+		#turns {
+			position: absolute;
+			top: 213px;
+			left: 522px;
+			font-family: MyriadPro-Light;
+			font-size: 75px;
+			color: white;
+		}
+
+		#playerTurns {
+			position: absolute;
+			top: 261px;
+			left: 522px;
+			font-family: Segoe UI;
+			font-size: 100px;
+			color: white;
+		}
+
+		button {
+			position: absolute;
+			top: 400px;
+			left: 239px;
+			width: 216px;
+			height: 36px;
+			border: 2px solid #efefef;
+			outline: 1px solid #acacac;
+			background: none;
+			font-family: MyriadPro-Light;
+			font-size: 28px;
+			color: white;
+			letter-spacing: 1px;
+			cursor: pointer;
+		}
+
+		button::-moz-focus-inner { 
+			border: 0;
+			padding: 0;
+		}
+
+		button:hover {
+			outline: 1px solid #7eb4ea;
+		}
+
+		button:active {
+			outline: 1px solid #3399ff;
+		}
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+
+		.animate {
+			-webkit-animation: rise 1s;
+			animation: rise 1s;
+		}
+
+		@-webkit-keyframes rise {
+			from {
+				top: 410px;
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+		@keyframes rise {
+			from {
+				top: 410px;
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="bingo"><div id="bingo1">BINGO</div><div id="bingo2">BINGO</div>BINGO</div>
+		<div id="time">Time</div>
+		<div class="stats" id="playerTime">00:00</div>
+		<div id="turns">Turns</div>
+		<div class="stats" id="playerTurns">0</div>
+		<button>Play again</button>
+	</div>
+
+	<script>
+		var playerTime = sessionStorage.getItem('time');
+		var playerTurns = sessionStorage.getItem('turns');
+
+		var time = 0;
+		var timer = function() {
+			if ($('#playerTime').html() !== playerTime) {
+				window.setTimeout(function() {
+					time++;
+					seconds = Math.floor(time % 60);
+					minutes = Math.floor(time / 60);
+					if (seconds < 10) {
+						seconds = "0" + seconds;
+					}
+					if (minutes < 10) {
+						minutes = "0" + minutes;
+					}
+					$('#playerTime').html(minutes + ":" + seconds);
+					timer();
+
+					if ($('#playerTime').html() === playerTime) {
+						turnsCount();
+					}
+				},5)
+			}
+		}
+		if (playerTime !== null) {
+			timer();
+		}
+
+		var turns = 0;
+		var turnsCount = function() {
+			if ($('#playerTurns').html() !== playerTurns) {
+				window.setTimeout(function() {
+					turns++;
+					$('#playerTurns').html(turns);
+					turnsCount();
+
+					if ($('#playerTurns').html() === playerTurns) {
+						animate();
+					}
+				},10);
+			}
+		}
+
+		var animate = function() {
+			$('button').addClass('animate');
+			$('button').show();
+		}
+		$('button').hide();
+		$('button').click(function() {
+			window.location = "http://galacemiguel.github.io/bingo-simplified/card";
+		});
+	</script>
+</body>
+</html>

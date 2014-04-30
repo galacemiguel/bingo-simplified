@@ -7,9 +7,9 @@
 		@font-face {
 			font-family: 'MyriadPro-Light';
 			src: url('Resources/MyriadPro-Light.eot?') format('eot'), 
-				url('Resources/MyriadPro-Light.otf')  format('opentype'),
+				url('Resources/MyriadPro-Light.otf') format('opentype'),
 				url('Resources/MyriadPro-Light.woff') format('woff'), 
-				url('Resources/MyriadPro-Light.ttf')  format('truetype'),
+				url('Resources/MyriadPro-Light.ttf') format('truetype'),
 				url('Resources/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
 		}
 
@@ -65,13 +65,13 @@
 			position: relative;
 			top: -123px;
 			left: 130px;
+			display: inline-block;
 			width: 269px;
 			height: 121px;
-			display: inline-block;
 			font-family: MyriadPro-Light;
-			font-weight: 100;
 			font-size: 100px;
 			color: white;
+			font-weight: 100;
 			letter-spacing: -2px;
 			-webkit-transform: scale(1.1,1);
 			transform: scale(1.1,1);
@@ -102,15 +102,14 @@
 
 		button {
 			position: relative;
-			z-index: 1;
+			display: block;
 			width: 216px;
 			height: 36px;
-			display: block;
 			border: 2px solid #efefef;
-			outline: none;
+			outline: 0;
 			box-shadow: 0 0 0 1px #acacac;
 			margin: 0 71px 10px;
-			background: transparent;
+			background: none;
 			font-family: MyriadPro-Light;
 			font-size: 28px;
 			color: white;
@@ -136,21 +135,20 @@
 			text-decoration: none;
 		}
 
-		#line {
+		#divider {
 			position: absolute;
-			top: 28px;
-			left: 0;
+			top: 213px;
+			left: 337px;
 			width: 2px;
-			height: 208px;
+			height: 206px;
 			background: white;
 		}
 
 		.instructions {
 			position: relative;
-			top: -169px;
-			left: 353px;
-			width: 350px;
-			padding: 0 0 0 21px;
+			top: -165px;
+			left: 376px;
+			width: 348px;
 			font-family: MyriadPro-Light;
 			font-size: 14px;
 			color: white;
@@ -160,9 +158,9 @@
 		}
 
 		h1 {
-			padding: 4px 0 10px 0;
+			margin-left: -0.55px;
+			margin-bottom: -4px;
 			font-weight: 100;
-			margin-bottom: -15px;
 		}
 	</style>
 </head>
@@ -181,8 +179,8 @@
 		<button id="how-to-play">How to Play</button>
 		<br />
 		<button id="back">Back</button>
+		<div id="divider"></div>
 		<div class="instructions" id="rules">
-			<div id="line"></div>
 			<h1>Rules</h1>
 			<p> Bingo is played with a card containing 24 unique numbers arranged in a 5x5 square grid (the middle square is a <i>free space</i>). Bingo numbers (1-75) will be called at random until a player completes a Bingo pattern. </p>
 			<p>In this simplified version, the objective is to clear a line of five consecutive numbers (a row, column or diagonal) on a card. A number may be cleared if the number called is present on the Bingo card.</p>
@@ -190,7 +188,6 @@
 			<p>The game will be timed. Players must attempt to complete a Bingo pattern in the fastest time possible!</p>
 		</div>
 		<div class="instructions" id="how-to-play">
-			<div id="line"></div>
 			<h1>How to Play</h1>
 			<p>You will be allowed to create your own Bingo card. Simply type in the numbers of your choice into your card at the beginning of the game.</p>
 			<p>You can also choose to generate a random Bingo card by clicking on the Randomize button.</p>
@@ -198,6 +195,7 @@
 			<p>Numbers will repeat once all Bingo numbers have been called into play.</p>
 		</div>
 	</div>
+
 	<script>
 		$('div#how-to-play').hide();
 

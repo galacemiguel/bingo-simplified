@@ -7,9 +7,9 @@
 		@font-face {
 			font-family: 'MyriadPro-Light';
 			src: url('Resources/MyriadPro-Light.eot?') format('eot'), 
-				url('Resources/MyriadPro-Light.otf')  format('opentype'),
+				url('Resources/MyriadPro-Light.otf') format('opentype'),
 				url('Resources/MyriadPro-Light.woff') format('woff'), 
-				url('Resources/MyriadPro-Light.ttf')  format('truetype'),
+				url('Resources/MyriadPro-Light.ttf') format('truetype'),
 				url('Resources/MyriadPro-Light.svg#MyriadPro-Light') format('svg');
 		}
 
@@ -50,7 +50,7 @@
 		#h-line {
 			position: relative;
 			top: 47px;
-			width: 100%;
+			width: 99%;
 			height: 3px;
 			background: white;
 		}
@@ -60,36 +60,41 @@
 			top: -3px;
 			left: 47px;
 			width: 3px;
-			height: 100%;
+			height: 99%;
 			background: white;
 		}
 
-		.btnBingo {
+		#btnBingo {
 			position: absolute;
 			top: -100px;
 			left: 3px;
 			padding: 0;
 			border: 0;
+			outline: 0;
 			box-shadow: inset 0 0 0 3px white, 0 0 0 1px #acacac;
-			outline: none;
-			background: transparent;
+			background: none;
 			cursor: pointer;
 		}
 
-		.btnBingo:hover:enabled {
+		button::-moz-focus-inner { 
+			border: 0;
+			padding: 0;
+		}
+
+		#btnBingo:hover:enabled {
 			box-shadow: inset 0 0 0 3px white, 0 0 0 1px #7eb4ea;
 		}
 
-		.btnBingo:active:enabled {
+		#btnBingo:active:enabled {
 			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
 		}
 
-		.btnBingo.active {
+		#btnBingo.active {
 			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
 		}
 
-		.btnBingo:disabled {
-			outline: none;
+		#btnBingo:disabled {
+			outline: 0;
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.13);
 			cursor: default;
@@ -103,9 +108,9 @@
 			height: 121px;
 			display: inline-block;
 			font-family: MyriadPro-Light;
-			font-weight: 100;
 			font-size: 100px;
 			color: white;
+			font-weight: 100;
 			letter-spacing: -2px;
 			-webkit-transform: scale(1.1,1);
 			transform: scale(1.1,1);
@@ -134,11 +139,6 @@
 			background: linear-gradient(to right, rgba(255,255,255,0), white, rgba(255,255,255,0));
 		}
 
-		button::-moz-focus-inner { 
-			border: 0;
-			padding: 0;
-		}
-
 		a {
 			color: white;
 			text-decoration: none;
@@ -151,10 +151,9 @@
 			display: block;
 			width: 262px;
 			height: 262px;
-			background: transparent;
+			box-shadow: 0 0 0 1px #acacac, 0 0 100px rgba(0,0,0,.4);
 			font-family: MyriadPro-Light;
 			color: white;
-			box-shadow: 0 0 0 1px #acacac, 0 0 100px rgba(0,0,0,.4);
 		}
 
 		#card.enabled:hover {
@@ -166,9 +165,9 @@
 		}
 
 		#card.disabled {
+			box-shadow: 0 0 100px rgba(0,0,0,.4);
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.6);
-			box-shadow: 0 0 100px rgba(0,0,0,.4);
 		}
 
 		table {
@@ -177,61 +176,51 @@
 			border-collapse: collapse;
 		}
 
-		.cell {
-			position: relative;
-			top: 0;
-			left: 11px;
-			width: 50px;
-			height: 50px;
-			margin: -2px;
-		}
-
 		td {
 			border: 2px solid #efefef;
+			text-align: center;
+		}
+
+		.cell {
+			height: 42px;
 		}
 
 		.btnCell {
-			position: relative;
-			top: 10px;
 			width: 42px;
 			height: 42px;
 			border: 1px solid #555555;
-			outline: none;
-			margin: -6px;
+			outline: 0;
 			background: white;
 			font-family: Segoe UI;
 			font-size: 18px;
-			text-align: center;
 			cursor: pointer;
 		}
 
 		.btnCell:hover:enabled {
-			border-top: none;
-			border-left: none;
+			border-top: 0;
+			border-left: 0;
 			box-shadow: 0 0 0 white;
 		}
 
 		.btnCell:active:enabled {
 			width: 40px;
 			height: 40px;
-			box-shadow: 0 0 0 1px black;
 			border: 1px solid #555555;
-			margin: -5px;
+			box-shadow: 0 0 0 1px black;
+		}
+
+		.btnCell.active {
+			width: 40px;
+			height: 40px;
+			border: 1px solid #555555;
+			box-shadow: 0 0 0 1px black;
 		}
 
 		.btnCell:disabled {
 			cursor: default;
 		}
 
-		.btnCellActive {
-			width: 40px;
-			height: 40px;
-			box-shadow: 0 0 0 1px black;
-			border: 1px solid #555555;
-			margin: -5px;
-		}
-
-		.btnCellActive:disabled {
+		.btnCell.active:disabled {
 			color: black;
 		}
 
@@ -244,21 +233,21 @@
 			background: #7eb4ea;
 		}
 
-		#freeSpace {
+		#free-space {
 			position: absolute;
 			top: 116px;
 			left: 115px;
-			border: none;
+			border: 0;
 			font-size: 16px;
-			text-align: center;
 			letter-spacing: 0;
+			text-align: center;
 		}
 
 		@-moz-document url-prefix() {
-		    #freeSpace {
-		    	top: 113px;
-		    	line-height: 20px;
-		    }
+			#free-space {
+				top: 113px;
+				line-height: 20px;
+			}
 		}
 
 		span {
@@ -291,12 +280,12 @@
 		input.hud[type="button"] {
 			display: block;
 			border: 2px solid #efefef;
-			outline: none;
+			outline: 0;
 			box-shadow: 0 0 0 1px #acacac;
 			width: 108px;
 			height: 108px;
 			margin-bottom: 29px;
-			background: transparent;
+			background: none;
 			font-family: Segoe UI;
 			font-size: 35px;
 			color: white;
@@ -311,14 +300,14 @@
 			box-shadow: 0 0 0 1px #3399ff;
 		}
 
+		input.hud.active[type="button"] {
+			box-shadow: 0 0 0 1px #3399ff;
+		}
+
 		input.hud[type="button"]:disabled {
 			background: rgba(255,255,255,.33);
 			color: rgba(255,255,255,.13);
 			cursor: default;
-		}
-
-		input.active[type="button"] {
-			box-shadow: 0 0 0 1px #3399ff;
 		}
 
 		#time {
@@ -342,11 +331,11 @@
 			top: 182px;
 			left: 496px;
 			border: 2px solid #efefef;
-			outline: none;
+			outline: 0;
 			box-shadow: 0 0 0 1px #acacac;
 			width: 103px;
 			height: 103px;
-			background: transparent;
+			background: none;
 			cursor: pointer;
 		}
 
@@ -416,7 +405,7 @@
 <body>
 	<div id="container">
 		<div id="logo">
-			<button class="btnBingo">
+			<button id="btnBingo">
 				<div id="box">
 					<div id="h-line"></div>
 					<div id="v-line"></div>
@@ -428,39 +417,39 @@
 		<div id="card" class="enabled">
 			<table>
 				<tr>
-					<td><div class="cell" id="r1c1Repeat"><input type="button" class="btnCell" id="r1c1"></div></td>
-					<td><div class="cell" id="r1c2Repeat"><input type="button" class="btnCell" id="r1c2"></div></td>
-					<td><div class="cell" id="r1c3Repeat"><input type="button" class="btnCell" id="r1c3"></div></td>
-					<td><div class="cell" id="r1c4Repeat"><input type="button" class="btnCell" id="r1c4"></div></td>
-					<td><div class="cell" id="r1c5Repeat"><input type="button" class="btnCell" id="r1c5"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r1c1"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r1c2"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r1c3"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r1c4"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r1c5"></div></td>
 				</tr>
 				<tr>
-					<td><div class="cell" id="r2c1Repeat"><input type="button" class="btnCell" id="r2c1"></div></td>
-					<td><div class="cell" id="r2c2Repeat"><input type="button" class="btnCell" id="r2c2"></div></td>
-					<td><div class="cell" id="r2c3Repeat"><input type="button" class="btnCell" id="r2c3"></div></td>
-					<td><div class="cell" id="r2c4Repeat"><input type="button" class="btnCell" id="r2c4"></div></td>
-					<td><div class="cell" id="r2c5Repeat"><input type="button" class="btnCell" id="r2c5"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r2c1"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r2c2"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r2c3"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r2c4"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r2c5"></div></td>
 				</tr>
 				<tr>
-					<td><div class="cell" id="r3c1Repeat"><input type="button" class="btnCell" id="r3c1"></div></td>
-					<td><div class="cell" id="r3c2Repeat"><input type="button" class="btnCell" id="r3c2"></div></td>
-					<td><div id="freeSpace">FREE<br /><span>SPACE</span></div></td>
-					<td><div class="cell" id="r3c4Repeat"><input type="button" class="btnCell" id="r3c4"></div></td>
-					<td><div class="cell" id="r3c5Repeat"><input type="button" class="btnCell" id="r3c5"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r3c1"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r3c2"></div></td>
+					<td><div id="free-space">FREE<br /><span>SPACE</span></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r3c4"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r3c5"></div></td>
 				</tr>
 				<tr>
-					<td><div class="cell" id="r4c1Repeat"><input type="button" class="btnCell" id="r4c1"></div></td>
-					<td><div class="cell" id="r4c2Repeat"><input type="button" class="btnCell" id="r4c2"></div></td>
-					<td><div class="cell" id="r4c3Repeat"><input type="button" class="btnCell" id="r4c3"></div></td>
-					<td><div class="cell" id="r4c4Repeat"><input type="button" class="btnCell" id="r4c4"></div></td>
-					<td><div class="cell" id="r4c5Repeat"><input type="button" class="btnCell" id="r4c5"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r4c1"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r4c2"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r4c3"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r4c4"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r4c5"></div></td>
 				</tr>
 				<tr>
-					<td><div class="cell" id="r5c1Repeat"><input type="button" class="btnCell" id="r5c1"></div></td>
-					<td><div class="cell" id="r5c2Repeat"><input type="button" class="btnCell" id="r5c2"></div></td>
-					<td><div class="cell" id="r5c3Repeat"><input type="button" class="btnCell" id="r5c3"></div></td>
-					<td><div class="cell" id="r5c4Repeat"><input type="button" class="btnCell" id="r5c4"></div></td>
-					<td><div class="cell" id="r5c5Repeat"><input type="button" class="btnCell" id="r5c5"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r5c1"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r5c2"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r5c3"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r5c4"></div></td>
+					<td><div class="cell"><input type="button" class="btnCell" id="r5c5"></div></td>
 				</tr>
 			</table>
 		</div>
@@ -477,6 +466,7 @@
 			<button class ="menu" id="btnQuit"><img src="Resources/btnQuitIcon.png"><h2 id="quit">Quit</h2></button>
 		</div>
 	</div>
+
 	<script>
 		var play = false;
 
@@ -517,192 +507,192 @@
 
 		var gameEnd = false;
 
-		var hideBingoNumbers = function() {
-			if ($('#r1c1').hasClass('marked') === false) {
+		var hideCardNumbers = function() {
+			if (!($('#r1c1').hasClass('marked'))) {
 				$('#r1c1').val("*");
 			}
-			if ($('#r1c2').hasClass('marked') === false) {
+			if (!($('#r1c2').hasClass('marked'))) {
 				$('#r1c2').val("*");
 			}
-			if ($('#r1c3').hasClass('marked') === false) {
+			if (!($('#r1c3').hasClass('marked'))) {
 				$('#r1c3').val("*");
 			}
-			if ($('#r1c4').hasClass('marked') === false) {
+			if (!($('#r1c4').hasClass('marked'))) {
 				$('#r1c4').val("*");
 			}
-			if ($('#r1c5').hasClass('marked') === false) {
+			if (!($('#r1c5').hasClass('marked'))) {
 				$('#r1c5').val("*");
 			}
-			if ($('#r2c1').hasClass('marked') === false) {
+			if (!($('#r2c1').hasClass('marked'))) {
 				$('#r2c1').val("*");
 			}
-			if ($('#r2c2').hasClass('marked') === false) {
+			if (!($('#r2c2').hasClass('marked'))) {
 				$('#r2c2').val("*");
 			}
-			if ($('#r2c3').hasClass('marked') === false) {
+			if (!($('#r2c3').hasClass('marked'))) {
 				$('#r2c3').val("*");
 			}
-			if ($('#r2c4').hasClass('marked') === false) {
+			if (!($('#r2c4').hasClass('marked'))) {
 				$('#r2c4').val("*");
 			}
-			if ($('#r2c5').hasClass('marked') === false) {
+			if (!($('#r2c5').hasClass('marked'))) {
 				$('#r2c5').val("*");
 			}
-			if ($('#r3c1').hasClass('marked') === false) {
+			if (!($('#r3c1').hasClass('marked'))) {
 				$('#r3c1').val("*");
 			}
-			if ($('#r3c2').hasClass('marked') === false) {
+			if (!($('#r3c2').hasClass('marked'))) {
 				$('#r3c2').val("*");
 			}
-			if ($('#r3c4').hasClass('marked') === false) {
+			if (!($('#r3c4').hasClass('marked'))) {
 				$('#r3c4').val("*");
 			}
-			if ($('#r3c5').hasClass('marked') === false) {
+			if (!($('#r3c5').hasClass('marked'))) {
 				$('#r3c5').val("*");
 			}
-			if ($('#r4c1').hasClass('marked') === false) {
+			if (!($('#r4c1').hasClass('marked'))) {
 				$('#r4c1').val("*");
 			}
-			if ($('#r4c2').hasClass('marked') === false) {
+			if (!($('#r4c2').hasClass('marked'))) {
 				$('#r4c2').val("*");
 			}
-			if ($('#r4c3').hasClass('marked') === false) {
+			if (!($('#r4c3').hasClass('marked'))) {
 				$('#r4c3').val("*");
 			}
-			if ($('#r4c4').hasClass('marked') === false) {
+			if (!($('#r4c4').hasClass('marked'))) {
 				$('#r4c4').val("*");
 			}
-			if ($('#r4c5').hasClass('marked') === false) {
+			if (!($('#r4c5').hasClass('marked'))) {
 				$('#r4c5').val("*");
 			}
-			if ($('#r5c1').hasClass('marked') === false) {
+			if (!($('#r5c1').hasClass('marked'))) {
 				$('#r5c1').val("*");
 			}
-			if ($('#r5c2').hasClass('marked') === false) {
+			if (!($('#r5c2').hasClass('marked'))) {
 				$('#r5c2').val("*");
 			}
-			if ($('#r5c3').hasClass('marked') === false) {
+			if (!($('#r5c3').hasClass('marked'))) {
 				$('#r5c3').val("*");
 			}
-			if ($('#r5c4').hasClass('marked') === false) {
+			if (!($('#r5c4').hasClass('marked'))) {
 				$('#r5c4').val("*");
 			}
-			if ($('#r5c5').hasClass('marked') === false) {
+			if (!($('#r5c5').hasClass('marked'))) {
 				$('#r5c5').val("*");
 			}
 		}
-		var showBingoNumbers = function() {
+		var showCardNumbers = function() {
 			if (time === 0 || play === true) {
 				if ($('#r1c1').hasClass('marked') === false) {
-					$('#r1c1').val(r1c1);
 					$('#r1c1').prop("disabled",false);
+					$('#r1c1').val(r1c1);
 				}
 				if ($('#r1c2').hasClass('marked') === false) {
-					$('#r1c2').val(r1c2);
 					$('#r1c2').prop("disabled",false);
+					$('#r1c2').val(r1c2);
 				}
 				if ($('#r1c3').hasClass('marked') === false) {
-					$('#r1c3').val(r1c3);
 					$('#r1c3').prop("disabled",false);
+					$('#r1c3').val(r1c3);
 				}
 				if ($('#r1c4').hasClass('marked') === false) {
-					$('#r1c4').val(r1c4);
 					$('#r1c4').prop("disabled",false);
+					$('#r1c4').val(r1c4);
 				}
 				if ($('#r1c5').hasClass('marked') === false) {
-					$('#r1c5').val(r1c5);
 					$('#r1c5').prop("disabled",false);
+					$('#r1c5').val(r1c5);
 				}
 				if ($('#r2c1').hasClass('marked') === false) {
-					$('#r2c1').val(r2c1);
 					$('#r2c1').prop("disabled",false);
+					$('#r2c1').val(r2c1);
 				}
 				if ($('#r2c2').hasClass('marked') === false) {
-					$('#r2c2').val(r2c2);
 					$('#r2c2').prop("disabled",false);
+					$('#r2c2').val(r2c2);
 				}
 				if ($('#r2c3').hasClass('marked') === false) {
-					$('#r2c3').val(r2c3);
 					$('#r2c3').prop("disabled",false);
+					$('#r2c3').val(r2c3);
 				}
 				if ($('#r2c4').hasClass('marked') === false) {
-					$('#r2c4').val(r2c4);
 					$('#r2c4').prop("disabled",false);
+					$('#r2c4').val(r2c4);
 				}
 				if ($('#r2c5').hasClass('marked') === false) {
-					$('#r2c5').val(r2c5);
 					$('#r2c5').prop("disabled",false);
+					$('#r2c5').val(r2c5);
 				}
 				if ($('#r3c1').hasClass('marked') === false) {
-					$('#r3c1').val(r3c1);
 					$('#r3c1').prop("disabled",false);
+					$('#r3c1').val(r3c1);
 				}
 				if ($('#r3c2').hasClass('marked') === false) {
-					$('#r3c2').val(r3c2);
 					$('#r3c2').prop("disabled",false);
+					$('#r3c2').val(r3c2);
 				}
 				if ($('#r3c4').hasClass('marked') === false) {
-					$('#r3c4').val(r3c4);
 					$('#r3c4').prop("disabled",false);
+					$('#r3c4').val(r3c4);
 				}
 				if ($('#r3c5').hasClass('marked') === false) {
-					$('#r3c5').val(r3c5);
 					$('#r3c5').prop("disabled",false);
+					$('#r3c5').val(r3c5);
 				}
 				if ($('#r4c1').hasClass('marked') === false) {
-					$('#r4c1').val(r4c1);
 					$('#r4c1').prop("disabled",false);
+					$('#r4c1').val(r4c1);
 				}
 				if ($('#r4c2').hasClass('marked') === false) {
-					$('#r4c2').val(r4c2);
 					$('#r4c2').prop("disabled",false);
+					$('#r4c2').val(r4c2);
 				}
 				if ($('#r4c3').hasClass('marked') === false) {
-					$('#r4c3').val(r4c3);
 					$('#r4c3').prop("disabled",false);
+					$('#r4c3').val(r4c3);
 				}
 				if ($('#r4c4').hasClass('marked') === false) {
-					$('#r4c4').val(r4c4);
 					$('#r4c4').prop("disabled",false);
+					$('#r4c4').val(r4c4);
 				}
 				if ($('#r4c5').hasClass('marked') === false) {
-					$('#r4c5').val(r4c5);
 					$('#r4c5').prop("disabled",false);
+					$('#r4c5').val(r4c5);
 				}
 				if ($('#r5c1').hasClass('marked') === false) {
-					$('#r5c1').val(r5c1);
 					$('#r5c1').prop("disabled",false);
+					$('#r5c1').val(r5c1);
 				}
 				if ($('#r5c2').hasClass('marked') === false) {
-					$('#r5c2').val(r5c2);
 					$('#r5c2').prop("disabled",false);
+					$('#r5c2').val(r5c2);
 				}
 				if ($('#r5c3').hasClass('marked') === false) {
-					$('#r5c3').val(r5c3);
 					$('#r5c3').prop("disabled",false);
+					$('#r5c3').val(r5c3);
 				}
 				if ($('#r5c4').hasClass('marked') === false) {
-					$('#r5c4').val(r5c4);
 					$('#r5c4').prop("disabled",false);
+					$('#r5c4').val(r5c4);
 				}
 				if ($('#r5c5').hasClass('marked') === false) {
-					$('#r5c5').val(r5c5);
 					$('#r5c5').prop("disabled",false);
+					$('#r5c5').val(r5c5);
 				}
 			}
 		}
 
 		var dialogPause = function() {
 			play = false;
-			$('.btnBingo').prop("disabled",true);
+			$('#btnBingo').prop("disabled",true);
+			$('#card').removeClass('enabled');
+			$('#card').addClass('disabled');
+			$('.btnCell').prop("disabled",true);
+			hideCardNumbers();
 			$('#numberBox').val("#");
 			$('#numberBox').removeClass('active');
 			$('#numberBox').prop("disabled",true);
 			$('#turnsBox').prop("disabled",true);
-			$('#card').removeClass('enabled');
-			$('#card').addClass('disabled');
-			$('.btnCell').prop("disabled",true);
-			hideBingoNumbers();
 			$('#timeBox').prop("disabled",true);
 			$('#btnPause').prop("disabled",true);
 			$('#btnPlay').prop("disabled",true);
@@ -717,7 +707,10 @@
 				play = true;
 			}
 			if (!($('#btnPause').is(':hidden'))) {
-				$('.btnBingo').prop("disabled",false);
+				$('#btnBingo').prop("disabled",false);
+				$('#card').removeClass('disabled');
+				$('#card').addClass('enabled');
+				showCardNumbers();
 				if (time !== 0) {
 					$('#numberBox').val(calledNumbers[calledNumberId - 1]);
 				} else {
@@ -725,9 +718,6 @@
 				}
 				$('#numberBox').prop("disabled",false);
 				$('#turnsBox').prop("disabled",false);
-				$('#card').removeClass('disabled');
-				$('#card').addClass('enabled');
-				showBingoNumbers();
 				$('#timeBox').prop("disabled",false);
 			}
 			$('#btnPause').prop("disabled",false);
@@ -743,36 +733,17 @@
 			}
 		}
 
-		$('.btnBingo').click(function() {
+		$('#btnBingo').click(function() {
 			if (gameEnd === true) {
-				seconds = seconds * 1;
-				minutes = minutes * 1;
-				if (minutes === 0 && seconds !== 0) {
-					time = seconds + " seconds";
-				} else if (minutes === 1 && seconds === 0) {
-					time = 1 + " minute";
-				} else if (minutes === 1 && seconds === 1) {
-					time = "1 minute and 1 second";
-				} else if (minutes === 1 && seconds > 1) {
-					time = "1 minute and " + seconds + " seconds";
-				} else if (minutes > 1 && seconds === 0) {
-					time = minutes + " minutes";
-				} else if (minutes > 1 && seconds === 1) {
-					time = minutes + " minutes and 1 second";
-				} else if (minutes > 1 && seconds > 1) {
-					time = minutes + " minutes and " + seconds + " seconds";
-				}
-				if (confirm("Bingo! You finished with a time of " + time + " in " + turns + " turns of play. Do you want to play again?")) {
-					window.location = "http://galacemiguel.github.io/bingo-simplified/card";
-				} else {
-					window.location = "http://galacemiguel.github.io/bingo-simplified";
-				}
+				sessionStorage.setItem('time', $('#timeBox').val());
+				sessionStorage.setItem('turns', turns);
+				window.location = "http://galacemiguel.github.io/bingo-simplified/won";
 			} else if (time !== 0) {
 				$('#numberBox').val("#");
-				hideBingoNumbers();
+				hideCardNumbers();
 				alert("You have not completed a Bingo pattern yet.");
 				$('#numberBox').val(calledNumbers[calledNumberId - 1]);
-				showBingoNumbers();
+				showCardNumbers();
 			}
 		});
 
@@ -788,18 +759,18 @@
 				$(this).addClass('marked');
 				$(this).prop("disabled",true);
 
-				var r1 = $('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked');
-				var r2 = $('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked');
-				var r3 = $('#r3c1').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r3c5').hasClass('marked');
-				var r4 = $('#r4c1').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r4c5').hasClass('marked');
-				var r5 = $('#r5c1').hasClass('marked') && $('#r5c2').hasClass('marked') && $('#r5c3').hasClass('marked') && $('#r5c4').hasClass('marked') && $('#r5c5').hasClass('marked');
-				var c1 = $('#r1c1').hasClass('marked') && $('#r2c1').hasClass('marked') && $('#r3c1').hasClass('marked') && $('#r4c1').hasClass('marked') && $('#r5c1').hasClass('marked');
-				var c2 = $('#r1c2').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c2').hasClass('marked');
-				var c3 = $('#r1c3').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r5c3').hasClass('marked');
-				var c4 = $('#r1c4').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c4').hasClass('marked');
-				var c5 = $('#r1c5').hasClass('marked') && $('#r2c5').hasClass('marked') && $('#r3c5').hasClass('marked') && $('#r4c5').hasClass('marked') && $('#r5c5').hasClass('marked');
-				var d1 = $('#r1c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c5').hasClass('marked');
-				var d2 = $('#r1c5').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c1').hasClass('marked');
+				var r1 = $('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked'),
+				r2 = $('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked'),
+				r3 = $('#r3c1').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r3c5').hasClass('marked'),
+				r4 = $('#r4c1').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r4c5').hasClass('marked'),
+				r5 = $('#r5c1').hasClass('marked') && $('#r5c2').hasClass('marked') && $('#r5c3').hasClass('marked') && $('#r5c4').hasClass('marked') && $('#r5c5').hasClass('marked'),
+				c1 = $('#r1c1').hasClass('marked') && $('#r2c1').hasClass('marked') && $('#r3c1').hasClass('marked') && $('#r4c1').hasClass('marked') && $('#r5c1').hasClass('marked'),
+				c2 = $('#r1c2').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r3c2').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c2').hasClass('marked'),
+				c3 = $('#r1c3').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r4c3').hasClass('marked') && $('#r5c3').hasClass('marked'),
+				c4 = $('#r1c4').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r3c4').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c4').hasClass('marked'),
+				c5 = $('#r1c5').hasClass('marked') && $('#r2c5').hasClass('marked') && $('#r3c5').hasClass('marked') && $('#r4c5').hasClass('marked') && $('#r5c5').hasClass('marked'),
+				d1 = $('#r1c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r4c4').hasClass('marked') && $('#r5c5').hasClass('marked'),
+				d2 = $('#r1c5').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r4c2').hasClass('marked') && $('#r5c1').hasClass('marked');
 				if (r1 || r2 || r3 || r4 || r5 || c1 || c2 || c3 || c4 || c5 || d1 || d2) {
 				gameEnd = true;
 				if (r1) {
@@ -872,18 +843,18 @@
 					$('#r5c1').addClass('pattern');
 				}
 				alert("You completed a Bingo pattern! Click on the Bingo logo to finish.");
-				$('.btnBingo').addClass('active');
+				$('#btnBingo').addClass('active');
 				}
 			} else if (play === true && gameEnd === false) {
-				var thisValue = $(this).val();
-				hideBingoNumbers();
-				$(this).val(thisValue);
-				$(this).addClass('btnCellActive');
+				var thisVal = $(this).val();
+				hideCardNumbers();
+				$(this).val(thisVal);
+				$(this).addClass('active');
 				$(this).prop("disabled",true);
 				alert("The numbers do not match.");
-				$(this).removeClass('btnCellActive');
+				$(this).removeClass('active');
 				$(this).prop("disabled",false);
-				showBingoNumbers();
+				showCardNumbers();
 			}
 		};
 		$('#r1c1').click(mark), $('#r1c2').click(mark), $('#r1c3').click(mark), $('#r1c4').click(mark), $('#r1c5').click(mark),
@@ -899,23 +870,23 @@
 
 					$('#numberBox').removeClass('active');
 
-					turns += 1;
+					turns++;
 					$('#turnsBox').val(turns);
 
 					$('#numberBox').val(calledNumbers[calledNumberId])
 					if (calledNumberId !== 75) {
-						calledNumberId += 1;
+						calledNumberId++;
 					} else {
 						if (turns === 76) {
+							hideCardNumbers();
 							$('#numberBox').val("#");
-							hideBingoNumbers();
 							alert("All Bingo numbers have been called. Numbers will now repeat.");
-							showBingoNumbers();
+							showCardNumbers();
 						}
 						callNumbers();
 						calledNumberId = 0;
 						$('#numberBox').val(calledNumbers[calledNumberId])
-						calledNumberId += 1;
+						calledNumberId++;
 					}
 
 					startClicks++;
@@ -930,7 +901,7 @@
 		}
 		$('#numberBox').click(callNumber);
 		$(window).keydown(function(key) {
-			if (!($('#btnPause').is(':hidden')) && key.keyCode === 17) {
+			if (key.keyCode === 67 && !($('#btnPause').is(':hidden'))) {
 				callNumber();
 			}
 		});
@@ -964,15 +935,15 @@
 				$('#btnPause').hide();
 				$('#btnPlay').show();
 
-				$('.btnBingo').prop("disabled",true);
-				$('#numberBox').val("#");
-				$('#numberBox').removeClass('active');
-				$('#numberBox').prop("disabled",true);
-				$('#turnsBox').prop("disabled",true);
+				$('#btnBingo').prop("disabled",true);
 				$('#card').removeClass('enabled');
 				$('#card').addClass('disabled');
 				$('.btnCell').prop("disabled",true);
-				hideBingoNumbers();
+				hideCardNumbers();
+				$('#numberBox').removeClass('active');
+				$('#numberBox').val("#");
+				$('#numberBox').prop("disabled",true);
+				$('#turnsBox').prop("disabled",true);
 				$('#timeBox').prop("disabled",true);
 				startClicks = 0;
 			}
@@ -994,7 +965,10 @@
 			$(this).hide();
 			$('#btnPause').show();
 
-			$('.btnBingo').prop("disabled",false);
+			$('#btnBingo').prop("disabled",false);
+			$('#card').removeClass('disabled');
+			$('#card').addClass('enabled');
+			showCardNumbers();
 			if (time !== 0) {
 				$('#numberBox').val(calledNumbers[calledNumberId - 1]);
 			}
@@ -1003,18 +977,13 @@
 				$('#numberBox').addClass('active');
 			}
 			$('#turnsBox').prop("disabled",false);
-			$('#card').removeClass('disabled');
-			$('#card').addClass('enabled');
-			showBingoNumbers();
 			$('#timeBox').prop("disabled",false);
 		});
 
 		$('#btnRestart').click(function() {
 			if (gameEnd === false) {
 				if (time === 0) {
-					$('#numberBox').prop("disabled",false);
-					$('#turnsBox').prop("disabled",false);
-					$('.btnBingo').prop("disabled",false);
+					$('#btnBingo').prop("disabled",false);
 					$('#card').removeClass('disabled');
 					$('#card').addClass('enabled');
 					$('.btnCell').prop("disabled",false);
@@ -1023,9 +992,11 @@
 					$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
 					$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
 					$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
+					$('#numberBox').prop("disabled",false);
+					$('#turnsBox').prop("disabled",false);
 					$('#timeBox').prop("disabled",false);
 					$('#btnPlay').hide();
-										$('#btnPause').show();
+					$('#btnPause').show();
 				} else {
 					dialogPause();
 					if (confirm("Do you want to restart the game?")) {
@@ -1039,11 +1010,7 @@
 						startClicks = 0;
 						gameEnd = false;
 
-						$('#numberBox').prop("disabled",false);
-						$('#numberBox').val("#");
-						$('#turnsBox').prop("disabled",false);
-						$('#turnsBox').val("0");
-						$('.btnBingo').prop("disabled",false);
+						$('#btnBingo').prop("disabled",false);
 						$('#card').removeClass('disabled');
 						$('#card').addClass('enabled');
 						$('.btnCell').removeClass('marked');
@@ -1053,8 +1020,12 @@
 						$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
 						$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
 						$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
-						$('#timeBox').prop("disabled",false);
+						$('#numberBox').val("#");
+						$('#numberBox').prop("disabled",false);
+						$('#turnsBox').val("0");
+						$('#turnsBox').prop("disabled",false);
 						$('#timeBox').val("00:00");
+						$('#timeBox').prop("disabled",false);
 						$('#btnPlay').hide();
 						$('#btnPause').show();
 					}
