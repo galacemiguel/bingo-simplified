@@ -184,6 +184,7 @@
 			}
 		}
 		if (playerTime !== null) {
+			$('button').hide();
 			timer();
 		}
 
@@ -206,7 +207,6 @@
 			$('button').addClass('animate');
 			$('button').show();
 		}
-		$('button').hide();
 		$('button').click(function() {
 			window.location = "http://galacemiguel.github.io/bingo-simplified/card";
 		});
