@@ -89,10 +89,6 @@
 			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
 		}
 
-		#btnBingo.active {
-			box-shadow: inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff;
-		}
-
 		#btnBingo:disabled {
 			outline: 0;
 			background: rgba(255,255,255,.33);
@@ -203,6 +199,8 @@
 		}
 
 		.btnCell:active:enabled {
+			position: relative;
+			top: 1px;
 			width: 40px;
 			height: 40px;
 			border: 1px solid #555555;
@@ -210,6 +208,8 @@
 		}
 
 		.btnCell.active {
+			position: relative;
+			top: 1px;
 			width: 40px;
 			height: 40px;
 			border: 1px solid #555555;
@@ -584,100 +584,76 @@
 		var showCardNumbers = function() {
 			if (time === 0 || play === true) {
 				if ($('#r1c1').hasClass('marked') === false) {
-					$('#r1c1').prop("disabled",false);
-					$('#r1c1').val(r1c1);
+					$('#r1c1').prop("disabled",false).val(r1c1);
 				}
 				if ($('#r1c2').hasClass('marked') === false) {
-					$('#r1c2').prop("disabled",false);
-					$('#r1c2').val(r1c2);
+					$('#r1c2').prop("disabled",false).val(r1c2);
 				}
 				if ($('#r1c3').hasClass('marked') === false) {
-					$('#r1c3').prop("disabled",false);
-					$('#r1c3').val(r1c3);
+					$('#r1c3').prop("disabled",false).val(r1c3);
 				}
 				if ($('#r1c4').hasClass('marked') === false) {
-					$('#r1c4').prop("disabled",false);
-					$('#r1c4').val(r1c4);
+					$('#r1c4').prop("disabled",false).val(r1c4);
 				}
 				if ($('#r1c5').hasClass('marked') === false) {
-					$('#r1c5').prop("disabled",false);
-					$('#r1c5').val(r1c5);
+					$('#r1c5').prop("disabled",false).val(r1c5);
 				}
 				if ($('#r2c1').hasClass('marked') === false) {
-					$('#r2c1').prop("disabled",false);
-					$('#r2c1').val(r2c1);
+					$('#r2c1').prop("disabled",false).val(r2c1);
 				}
 				if ($('#r2c2').hasClass('marked') === false) {
-					$('#r2c2').prop("disabled",false);
-					$('#r2c2').val(r2c2);
+					$('#r2c2').prop("disabled",false).val(r2c2);
 				}
 				if ($('#r2c3').hasClass('marked') === false) {
-					$('#r2c3').prop("disabled",false);
-					$('#r2c3').val(r2c3);
+					$('#r2c3').prop("disabled",false).val(r2c3);
 				}
 				if ($('#r2c4').hasClass('marked') === false) {
-					$('#r2c4').prop("disabled",false);
-					$('#r2c4').val(r2c4);
+					$('#r2c4').prop("disabled",false).val(r2c4);
 				}
 				if ($('#r2c5').hasClass('marked') === false) {
-					$('#r2c5').prop("disabled",false);
-					$('#r2c5').val(r2c5);
+					$('#r2c5').prop("disabled",false).val(r2c5);
 				}
 				if ($('#r3c1').hasClass('marked') === false) {
-					$('#r3c1').prop("disabled",false);
-					$('#r3c1').val(r3c1);
+					$('#r3c1').prop("disabled",false).val(r3c1);
 				}
 				if ($('#r3c2').hasClass('marked') === false) {
-					$('#r3c2').prop("disabled",false);
-					$('#r3c2').val(r3c2);
+					$('#r3c2').prop("disabled",false).val(r3c2);
 				}
 				if ($('#r3c4').hasClass('marked') === false) {
-					$('#r3c4').prop("disabled",false);
-					$('#r3c4').val(r3c4);
+					$('#r3c4').prop("disabled",false).val(r3c4);
 				}
 				if ($('#r3c5').hasClass('marked') === false) {
-					$('#r3c5').prop("disabled",false);
-					$('#r3c5').val(r3c5);
+					$('#r3c5').prop("disabled",false).val(r3c5);
 				}
 				if ($('#r4c1').hasClass('marked') === false) {
-					$('#r4c1').prop("disabled",false);
-					$('#r4c1').val(r4c1);
+					$('#r4c1').prop("disabled",false).val(r4c1);
 				}
 				if ($('#r4c2').hasClass('marked') === false) {
-					$('#r4c2').prop("disabled",false);
-					$('#r4c2').val(r4c2);
+					$('#r4c2').prop("disabled",false).val(r4c2);
 				}
 				if ($('#r4c3').hasClass('marked') === false) {
-					$('#r4c3').prop("disabled",false);
-					$('#r4c3').val(r4c3);
+					$('#r4c3').prop("disabled",false).val(r4c3);
 				}
 				if ($('#r4c4').hasClass('marked') === false) {
-					$('#r4c4').prop("disabled",false);
-					$('#r4c4').val(r4c4);
+					$('#r4c4').prop("disabled",false).val(r4c4);
 				}
 				if ($('#r4c5').hasClass('marked') === false) {
-					$('#r4c5').prop("disabled",false);
-					$('#r4c5').val(r4c5);
+					$('#r4c5').prop("disabled",false).val(r4c5);
 				}
 				if ($('#r5c1').hasClass('marked') === false) {
-					$('#r5c1').prop("disabled",false);
-					$('#r5c1').val(r5c1);
+					$('#r5c1').prop("disabled",false).val(r5c1);
 				}
 				if ($('#r5c2').hasClass('marked') === false) {
-					$('#r5c2').prop("disabled",false);
-					$('#r5c2').val(r5c2);
+					$('#r5c2').prop("disabled",false).val(r5c2);
 				}
 				if ($('#r5c3').hasClass('marked') === false) {
-					$('#r5c3').prop("disabled",false);
-					$('#r5c3').val(r5c3);
+					$('#r5c3').prop("disabled",false).val(r5c3);
 				}
 				if ($('#r5c4').hasClass('marked') === false) {
-					$('#r5c4').prop("disabled",false);
-					$('#r5c4').val(r5c4);
+					$('#r5c4').prop("disabled",false).val(r5c4);
 				}
 				if ($('#r5c5').hasClass('marked') === false) {
-					$('#r5c5').prop("disabled",false);
-					$('#r5c5').val(r5c5);
+					$('#r5c5').prop("disabled",false).val(r5c5);
 				}
 			}
 		}
@@ -685,20 +661,13 @@
 		var dialogPause = function() {
 			play = false;
 			$('#btnBingo').prop("disabled",true);
-			$('#card').removeClass('enabled');
-			$('#card').addClass('disabled');
+			$('#card').removeClass('enabled').addClass('disabled');
 			$('.btnCell').prop("disabled",true);
 			hideCardNumbers();
-			$('#numberBox').val("#");
-			$('#numberBox').removeClass('active');
-			$('#numberBox').prop("disabled",true);
-			$('#turnsBox').prop("disabled",true);
-			$('#timeBox').prop("disabled",true);
-			$('#btnPause').prop("disabled",true);
-			$('#btnPlay').prop("disabled",true);
-			$('#btnPlay').removeClass('active');
-			$('#btnRestart').prop("disabled",true);
-			$('#btnQuit').prop("disabled",true);
+			$('#numberBox').val("#").removeClass('active').prop("disabled",true);
+			$('#turnsBox, #timeBox, #btnPause').prop("disabled",true);
+			$('#btnPlay').prop("disabled",true).removeClass('active');
+			$('#btnRestart, #btnQuit').prop("disabled",true);
 			$('img').fadeTo(0,.75);
 			$('h2').fadeTo(0,.55);
 		}
@@ -708,25 +677,19 @@
 			}
 			if (!($('#btnPause').is(':hidden'))) {
 				$('#btnBingo').prop("disabled",false);
-				$('#card').removeClass('disabled');
-				$('#card').addClass('enabled');
+				$('#card').removeClass('disabled').addClass('enabled');
 				showCardNumbers();
-				if (time !== 0) {
-					$('#numberBox').val(calledNumbers[calledNumberId - 1]);
-				} else {
+				if (time === 0) {
 					$('#numberBox').addClass('active');
+				} else {
+					$('#numberBox').val(calledNumbers[calledNumberId - 1]);
 				}
-				$('#numberBox').prop("disabled",false);
-				$('#turnsBox').prop("disabled",false);
-				$('#timeBox').prop("disabled",false);
+				$('#numberBox, #turnsBox, #timeBox').prop("disabled",false);
 			}
 			$('#btnPause').prop("disabled",false);
-			$('#btnPlay').prop("disabled",false);
-			$('#btnPlay').addClass('active');
-			$('#btnRestart').prop("disabled",false);
-			$('#btnQuit').prop("disabled",false);
-			$('img').fadeTo(0,1);
-			$('h2').fadeTo(0,1);
+			$('#btnPlay').prop("disabled",false).addClass('active');
+			$('#btnRestart, #btnQuit').prop("disabled",false);
+			$('img, h2').fadeTo(0,1);
 			var isFirefox = typeof InstallTrigger !== 'undefined';
 			if (isFirefox) {
 				timer();
@@ -755,9 +718,7 @@
 
 		var mark = function() {
 			if ($(this).val() === $('#numberBox').val()) {
-				$(this).val("");
-				$(this).addClass('marked');
-				$(this).prop("disabled",true);
+				$(this).val("").addClass('marked').prop("disabled",true);
 
 				var r1 = $('#r1c1').hasClass('marked') && $('#r1c2').hasClass('marked') && $('#r1c3').hasClass('marked') && $('#r1c4').hasClass('marked') && $('#r1c5').hasClass('marked'),
 				r2 = $('#r2c1').hasClass('marked') && $('#r2c2').hasClass('marked') && $('#r2c3').hasClass('marked') && $('#r2c4').hasClass('marked') && $('#r2c5').hasClass('marked'),
@@ -774,94 +735,43 @@
 				if (r1 || r2 || r3 || r4 || r5 || c1 || c2 || c3 || c4 || c5 || d1 || d2) {
 				gameEnd = true;
 				if (r1) {
-					$('#r1c1').addClass('pattern');
-					$('#r1c2').addClass('pattern');
-					$('#r1c3').addClass('pattern');
-					$('#r1c4').addClass('pattern');
-					$('#r1c5').addClass('pattern');
+					$('#r1c1, #r1c2, #r1c3, #r1c4, #r1c5').addClass('pattern');
 				} else if (r2) {
-					$('#r2c1').addClass('pattern');
-					$('#r2c2').addClass('pattern');
-					$('#r2c3').addClass('pattern');
-					$('#r2c4').addClass('pattern');
-					$('#r2c5').addClass('pattern');
+					$('#r2c1, #r2c2, #r2c3, #r2c4, #r2c5').addClass('pattern');
 				} else if (r3) {
-					$('#r3c1').addClass('pattern');
-					$('#r3c2').addClass('pattern');
-					$('#r3c4').addClass('pattern');
-					$('#r3c5').addClass('pattern');
+					$('#r3c1, #r3c2, #r3c4, #r3c5').addClass('pattern');
 				} else if (r4) {
-					$('#r4c1').addClass('pattern');
-					$('#r4c2').addClass('pattern');
-					$('#r4c3').addClass('pattern');
-					$('#r4c4').addClass('pattern');
-					$('#r4c5').addClass('pattern');
+					$('#r4c1, #r4c2, #r4c3, #r4c4, #r4c5').addClass('pattern');
 				} else if (r5) {
-					$('#r5c1').addClass('pattern');
-					$('#r5c2').addClass('pattern');
-					$('#r5c3').addClass('pattern');
-					$('#r5c4').addClass('pattern');
-					$('#r5c5').addClass('pattern');
+					$('#r5c1, #r5c2, #r5c3, #r5c4, #r5c5').addClass('pattern');
 				} else if (c1) {
-					$('#r1c1').addClass('pattern');
-					$('#r2c1').addClass('pattern');
-					$('#r3c1').addClass('pattern');
-					$('#r4c1').addClass('pattern');
-					$('#r5c1').addClass('pattern');
+					$('#r1c1, #r2c1, #r3c1, #r4c1, #r5c1').addClass('pattern');
 				} else if (c2) {
-					$('#r1c2').addClass('pattern');
-					$('#r2c2').addClass('pattern');
-					$('#r3c2').addClass('pattern');
-					$('#r4c2').addClass('pattern');
-					$('#r5c2').addClass('pattern');
+					$('#r1c2, #r2c2, #r3c2, #r4c2, #r5c2').addClass('pattern');
 				} else if (c3) {
-					$('#r1c3').addClass('pattern');
-					$('#r2c3').addClass('pattern');
-					$('#r4c3').addClass('pattern');
-					$('#r5c3').addClass('pattern');
+					$('#r1c3, #r2c3, #r4c3, #r5c3').addClass('pattern');
 				} else if (c4) {
-					$('#r1c4').addClass('pattern');
-					$('#r2c4').addClass('pattern');
-					$('#r3c4').addClass('pattern');
-					$('#r4c4').addClass('pattern');
-					$('#r5c4').addClass('pattern');
+					$('#r1c4, #r2c4, #r3c4, #r4c4, #r5c4').addClass('pattern');
 				} else if (c5) {
-					$('#r1c5').addClass('pattern');
-					$('#r2c5').addClass('pattern');
-					$('#r3c5').addClass('pattern');
-					$('#r4c5').addClass('pattern');
-					$('#r5c5').addClass('pattern');
+					$('#r1c5, #r2c5, #r3c5, #r4c5, #r5c5').addClass('pattern');
 				} else if (d1) {
-					$('#r1c1').addClass('pattern');
-					$('#r2c2').addClass('pattern');
-					$('#r4c4').addClass('pattern');
-					$('#r5c5').addClass('pattern');
+					$('#r1c1, #r2c2, #r4c4, #r5c5').addClass('pattern');
 				} else if (d2) {
-					$('#r1c5').addClass('pattern');
-					$('#r2c4').addClass('pattern');
-					$('#r4c2').addClass('pattern');
-					$('#r5c1').addClass('pattern');
+					$('#r1c5, #r2c4, #r4c2, #r5c1').addClass('pattern');
 				}
 				alert("You completed a Bingo pattern! Click on the Bingo logo to finish.");
-				$('#btnBingo').addClass('active');
+				$('#btnBingo').css('box-shadow', 'inset 0 0 0 3px #c7e2fc, 0 0 0 1px #3399ff');
 				}
 			} else if (play === true && gameEnd === false) {
 				var thisVal = $(this).val();
 				hideCardNumbers();
-				$(this).val(thisVal);
-				$(this).addClass('active');
-				$(this).prop("disabled",true);
+				$(this).val(thisVal).addClass('active').prop("disabled",true);
 				alert("The numbers do not match.");
-				$(this).removeClass('active');
-				$(this).prop("disabled",false);
+				$(this).removeClass('active').prop("disabled",false);
 				showCardNumbers();
 			}
 		};
-		$('#r1c1').click(mark), $('#r1c2').click(mark), $('#r1c3').click(mark), $('#r1c4').click(mark), $('#r1c5').click(mark),
-		$('#r2c1').click(mark), $('#r2c2').click(mark), $('#r2c3').click(mark), $('#r2c4').click(mark), $('#r2c5').click(mark),
-		$('#r3c1').click(mark), $('#r3c2').click(mark), $('#r3c4').click(mark), $('#r3c5').click(mark),
-		$('#r4c1').click(mark), $('#r4c2').click(mark), $('#r4c3').click(mark), $('#r4c4').click(mark), $('#r4c5').click(mark),
-		$('#r5c1').click(mark), $('#r5c2').click(mark), $('#r5c3').click(mark), $('#r5c4').click(mark), $('#r5c5').click(mark);
+		$('.btnCell').click(mark);
 
 		var callNumber = function() {
 			if (gameEnd === false) {
@@ -900,8 +810,8 @@
 			}
 		}
 		$('#numberBox').click(callNumber);
-		$(window).keydown(function(key) {
-			if (key.keyCode === 67 && !($('#btnPause').is(':hidden'))) {
+		$(document).keyup(function(key) {
+			if (key.which === 67 && !($('#btnPause').is(':hidden'))) {
 				callNumber();
 			}
 		});
@@ -936,15 +846,11 @@
 				$('#btnPlay').show();
 
 				$('#btnBingo').prop("disabled",true);
-				$('#card').removeClass('enabled');
-				$('#card').addClass('disabled');
+				$('#card').removeClass('enabled').addClass('disabled');
 				$('.btnCell').prop("disabled",true);
 				hideCardNumbers();
-				$('#numberBox').removeClass('active');
-				$('#numberBox').val("#");
-				$('#numberBox').prop("disabled",true);
-				$('#turnsBox').prop("disabled",true);
-				$('#timeBox').prop("disabled",true);
+				$('#numberBox').removeClass('active').val("#").prop("disabled",true);
+				$('#turnsBox, #timeBox').prop("disabled",true);
 				startClicks = 0;
 			}
 		};
@@ -966,35 +872,29 @@
 			$('#btnPause').show();
 
 			$('#btnBingo').prop("disabled",false);
-			$('#card').removeClass('disabled');
-			$('#card').addClass('enabled');
+			$('#card').removeClass('disabled').addClass('enabled');
 			showCardNumbers();
-			if (time !== 0) {
+			if (time === 0) {
+				$('#numberBox').addClass('active');
+			} else {
 				$('#numberBox').val(calledNumbers[calledNumberId - 1]);
 			}
 			$('#numberBox').prop("disabled",false);
-			if (time === 0) {
-				$('#numberBox').addClass('active');
-			}
-			$('#turnsBox').prop("disabled",false);
-			$('#timeBox').prop("disabled",false);
+			$('#turnsBox, #timeBox').prop("disabled",false);
 		});
 
 		$('#btnRestart').click(function() {
 			if (gameEnd === false) {
 				if (time === 0) {
 					$('#btnBingo').prop("disabled",false);
-					$('#card').removeClass('disabled');
-					$('#card').addClass('enabled');
+					$('#card').removeClass('disabled').addClass('enabled');
 					$('.btnCell').prop("disabled",false);
 					$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
 					$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
 					$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
 					$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
 					$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
-					$('#numberBox').prop("disabled",false);
-					$('#turnsBox').prop("disabled",false);
-					$('#timeBox').prop("disabled",false);
+					$('#numberBox, #turnsBox, #timeBox').prop("disabled",false);
 					$('#btnPlay').hide();
 					$('#btnPause').show();
 				} else {
@@ -1011,21 +911,16 @@
 						gameEnd = false;
 
 						$('#btnBingo').prop("disabled",false);
-						$('#card').removeClass('disabled');
-						$('#card').addClass('enabled');
-						$('.btnCell').removeClass('marked');
-						$('.btnCell').prop("disabled",false);
+						$('#card').removeClass('disabled').addClass('enabled');
+						$('.btnCell').removeClass('marked').prop("disabled",false);
 						$('#r1c1').val(r1c1), $('#r1c2').val(r1c2), $('#r1c3').val(r1c3), $('#r1c4').val(r1c4), $('#r1c5').val(r1c5),
 						$('#r2c1').val(r2c1), $('#r2c2').val(r2c2), $('#r2c3').val(r2c3), $('#r2c4').val(r2c4), $('#r2c5').val(r2c5),
 						$('#r3c1').val(r3c1), $('#r3c2').val(r3c2), $('#r3c4').val(r3c4), $('#r3c5').val(r3c5),
 						$('#r4c1').val(r4c1), $('#r4c2').val(r4c2), $('#r4c3').val(r4c3), $('#r4c4').val(r4c4), $('#r4c5').val(r4c5),
 						$('#r5c1').val(r5c1), $('#r5c2').val(r5c2), $('#r5c3').val(r5c3), $('#r5c4').val(r5c4), $('#r5c5').val(r5c5);
-						$('#numberBox').val("#");
-						$('#numberBox').prop("disabled",false);
-						$('#turnsBox').val("0");
-						$('#turnsBox').prop("disabled",false);
-						$('#timeBox').val("00:00");
-						$('#timeBox').prop("disabled",false);
+						$('#numberBox').val("#").prop("disabled",false);
+						$('#turnsBox').val("0").prop("disabled",false);
+						$('#timeBox').val("00:00").prop("disabled",false);
 						$('#btnPlay').hide();
 						$('#btnPause').show();
 					}

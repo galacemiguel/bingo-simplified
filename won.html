@@ -197,15 +197,11 @@
 					turnsCount();
 
 					if ($('#playerTurns').html() === playerTurns) {
-						animate();
+						$('button').addClass('animate');
+						$('button').show();
 					}
 				},10);
 			}
-		}
-
-		var animate = function() {
-			$('button').addClass('animate');
-			$('button').show();
 		}
 		$('button').click(function() {
 			window.location = "http://galacemiguel.github.io/bingo-simplified/card";

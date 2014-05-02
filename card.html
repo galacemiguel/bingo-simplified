@@ -463,24 +463,12 @@
 		}
 
 		$('input').keypress(function(key) {
-			if (key.keyCode === 8) {
+			if (key.which === 8) {
 				return;
-			} else if (key.charCode < 48 || key.charCode > 57) {
+			} else if (key.which < 48 || key.which > 57) {
 				return false;
 			}
 		});
-		$('input').keyup(function(key) {
-			if (key.keyCode === 8 || key.keyCode > 48 && key.keyCode < 57) {
-				updateCard();
-			}
-		})
-
-		$(document).ready(function() {
-			$('input').bind("cut copy paste drop", function() {
-				return false;
-			});
-		});
-
 		$('input').focusout(function() {
 			if ($(this).val() !== "") {
 				$(this).val($(this).val() * 1);
@@ -491,6 +479,15 @@
 				$(this).select();
 			}
 		});
+		$('input').bind("cut copy paste drop", function() {
+			return false;
+		});
+
+		$('input').keyup(function(key) {
+			if (key.which === 8 || key.which > 48 && key.which < 57) {
+				updateCard();
+			}
+		})
 
 		$('#clear').prop("disabled",true);
 		$('#clear').click(function() {
